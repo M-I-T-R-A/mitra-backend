@@ -3,10 +3,7 @@ package com.tvscredit.tvscredit.models;
 import com.tvscredit.tvscredit.models.enums.ShopCategory;
 import com.tvscredit.tvscredit.models.enums.ShopOwnership;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Shop {
@@ -33,6 +30,9 @@ public class Shop {
     private String electricityBillImageUrl;
 
     private ShopOwnership ownership;
+
+    @OneToOne
+    private Customer owner;
 
     public Long getId() {
         return id;
@@ -112,5 +112,13 @@ public class Shop {
 
     public void setOwnership(ShopOwnership ownership) {
         this.ownership = ownership;
+    }
+
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Customer owner) {
+        this.owner = owner;
     }
 }

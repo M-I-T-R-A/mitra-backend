@@ -12,7 +12,7 @@ public class BankAccount {
     private Long ifsc;
 
     @ManyToOne
-    private Customer customerId;
+    private Customer customer;
 
     private String accountNumber;
 
@@ -36,12 +36,12 @@ public class BankAccount {
         this.ifsc = ifsc;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customerId) {
+        this.customer = customerId;
     }
 
     public String getAccountNumber() {
@@ -73,7 +73,7 @@ public class BankAccount {
         return "BankAccount{" +
                 "id=" + id +
                 ", ifsc=" + ifsc +
-                ", customerId=" + customerId +
+                ", customerId=" + customer +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", bankStatementImageUrl='" + bankStatementImageUrl + '\'' +
                 ", currentValue=" + currentValue +
