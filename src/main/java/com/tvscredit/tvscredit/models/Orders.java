@@ -1,6 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Orders{
@@ -11,6 +12,9 @@ public class Orders{
 
     @ManyToOne
     private Shop shopId;
+
+    @ElementCollection
+    private List<Cart> cart;
 
     private String customerName;
 
@@ -34,6 +38,14 @@ public class Orders{
 
     public void setShopId(Shop shopId) {
         this.shopId = shopId;
+    }
+
+    public List<Cart> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
     }
 
     public String getCustomerName() {
@@ -73,6 +85,7 @@ public class Orders{
         return "Orders{" +
                 "id=" + id +
                 ", shopId=" + shopId +
+                ", cart=" + cart +
                 ", customerName='" + customerName + '\'' +
                 ", customerMobile='" + customerMobile + '\'' +
                 ", amount=" + amount +
