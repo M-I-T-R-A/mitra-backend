@@ -20,7 +20,15 @@ public class BankAccount {
 
     private String bankStatementImageUrl;
 
-    private String currentValue;
+    private Double currentValue;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getIfsc() {
         return ifsc;
@@ -54,21 +62,23 @@ public class BankAccount {
         this.bankStatementImageUrl = bankStatementImageUrl;
     }
 
-    public String getCurrentValue() {
+    public Double getCurrentValue() {
         return currentValue;
     }
 
-    public void setCurrentValue(String currentValue) {
+    public void setCurrentValue(Double currentValue) {
         this.currentValue = currentValue;
     }
 
     @Override
     public String toString() {
         return "BankAccount{" +
-                "ifsc=" + ifsc +
+                "id=" + id +
+                ", ifsc=" + ifsc +
+                ", customerId=" + customerId +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", bankStatementImageUrl='" + bankStatementImageUrl + '\'' +
-                ", currentValue='" + currentValue + '\'' +
+                ", currentValue=" + currentValue +
                 '}';
     }
 }
