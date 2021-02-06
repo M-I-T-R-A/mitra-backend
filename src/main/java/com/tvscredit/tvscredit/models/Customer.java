@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
+import com.tvscredit.tvscredit.models.enums.Gender;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
