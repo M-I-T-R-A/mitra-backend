@@ -10,6 +10,8 @@ public class BankAccount {
 
     @Id
     @GeneratedValue
+    private Long id;
+
     private Long ifsc;
 
     private Customer customerId;
