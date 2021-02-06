@@ -17,6 +17,7 @@ public class BankAccount {
 
     private String accountNumber;
 
+    @ElementCollection
     private List<String> bankStatementImageUrls;
 
     private Double currentValue;
