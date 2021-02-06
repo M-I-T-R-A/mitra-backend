@@ -1,6 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class BankAccount {
@@ -16,7 +17,7 @@ public class BankAccount {
 
     private String accountNumber;
 
-    private String bankStatementImageUrl;
+    private List<String> bankStatementImageUrls;
 
     private Double currentValue;
 
@@ -52,12 +53,12 @@ public class BankAccount {
         this.accountNumber = accountNumber;
     }
 
-    public String getBankStatementImageUrl() {
-        return bankStatementImageUrl;
+    public List<String> getBankStatementImageUrls() {
+        return bankStatementImageUrls;
     }
 
-    public void setBankStatementImageUrl(String bankStatementImageUrl) {
-        this.bankStatementImageUrl = bankStatementImageUrl;
+    public void setBankStatementImageUrls(List<String> bankStatementImageUrls) {
+        this.bankStatementImageUrls = bankStatementImageUrls;
     }
 
     public Double getCurrentValue() {
@@ -75,7 +76,7 @@ public class BankAccount {
                 ", ifsc=" + ifsc +
                 ", customerId=" + customer +
                 ", accountNumber='" + accountNumber + '\'' +
-                ", bankStatementImageUrl='" + bankStatementImageUrl + '\'' +
+                ", bankStatementImageUrl='" + bankStatementImageUrls + '\'' +
                 ", currentValue=" + currentValue +
                 '}';
     }

@@ -1,14 +1,13 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.surrogates;
 
-import com.tvscredit.tvscredit.models.enums.Gender;
+import com.tvscredit.tvscredit.models.Person;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Customer extends Person{
+public class Guarantor extends Person {
 
     @Id
     @GeneratedValue
