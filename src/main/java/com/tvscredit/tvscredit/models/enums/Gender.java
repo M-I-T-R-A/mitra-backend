@@ -1,4 +1,4 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.enums;
 
 public enum Gender {
     MALE,
