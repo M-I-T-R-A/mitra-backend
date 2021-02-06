@@ -1,9 +1,6 @@
 package com.tvscredit.tvscredit.models;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BankAccount {
@@ -14,6 +11,7 @@ public class BankAccount {
 
     private Long ifsc;
 
+    @ManyToOne
     private Customer customerId;
 
     private String accountNumber;
