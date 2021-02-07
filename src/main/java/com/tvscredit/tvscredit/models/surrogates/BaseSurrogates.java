@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models.surrogates;
 
+import com.tvscredit.tvscredit.models.enums.Competition;
+import com.tvscredit.tvscredit.models.enums.LocationCategory;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.person.Guarantor;
 

@@ -1,11 +1,13 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.loans;
 
+import com.tvscredit.tvscredit.models.enums.Approval;
 import com.tvscredit.tvscredit.models.person.Customer;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
 @Entity
-public class Loan{
+public class InstantLoan {
 
     @Id
     @GeneratedValue
@@ -14,9 +16,20 @@ public class Loan{
     @ManyToOne
     private Customer customer;
 
-    private String demandedAmount;
+    private Double demandedAmount;
 
-    private Boolean approval;
+    private Approval approval = Approval.WAITING;
+
+    @OneToOne(mappedBy = "instantLoan")
+    private ApprovedInstantLoan approvedInstantLoan;
+
+    public ApprovedInstantLoan getApprovedInstantLoan() {
+        return approvedInstantLoan;
+    }
+
+    public void setApprovedInstantLoan(ApprovedInstantLoan approvedInstantLoan) {
+        this.approvedInstantLoan = approvedInstantLoan;
+    }
 
     public Long getId() {
         return id;
@@ -34,19 +47,19 @@ public class Loan{
         this.customer = customer;
     }
 
-    public String getDemandedAmount() {
+    public Double getDemandedAmount() {
         return demandedAmount;
     }
 
-    public void setDemandedAmount(String demandedAmount) {
+    public void setDemandedAmount(Double demandedAmount) {
         this.demandedAmount = demandedAmount;
     }
 
-    public Boolean getApproval() {
+    public Approval getApproval() {
         return approval;
     }
 
-    public void setApproval(Boolean approval) {
+    public void setApproval(Approval approval) {
         this.approval = approval;
     }
 

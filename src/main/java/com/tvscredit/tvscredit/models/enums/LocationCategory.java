@@ -1,4 +1,4 @@
-package com.tvscredit.tvscredit.models.surrogates;
+package com.tvscredit.tvscredit.models.enums;
 
 public enum LocationCategory {
     HIGH,

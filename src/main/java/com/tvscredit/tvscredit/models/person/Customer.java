@@ -1,6 +1,6 @@
 package com.tvscredit.tvscredit.models.person;
 
-import com.tvscredit.tvscredit.models.Loan;
+import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
 
 import javax.persistence.*;
@@ -11,8 +11,10 @@ public class Customer extends Person{
 
     private Boolean haveCurrentLoan;
 
+    private Integer status;
+
     @OneToMany(mappedBy = "customer")
-    private List<Loan> allLoans;
+    private List<InstantLoan> allLoans;
 
     @OneToOne(mappedBy = "customer")
     private InstantLoanSurrogates instantLoanSurrogates;
@@ -25,11 +27,19 @@ public class Customer extends Person{
         this.haveCurrentLoan = haveCurrentLoan;
     }
 
-    public List<Loan> getAllLoans() {
+    public List<InstantLoan> getAllLoans() {
         return allLoans;
     }
 
-    public void setAllLoans(List<Loan> allLoans) {
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setAllLoans(List<InstantLoan> allLoans) {
         this.allLoans = allLoans;
     }
 
