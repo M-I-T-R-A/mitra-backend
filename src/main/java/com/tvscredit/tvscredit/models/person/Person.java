@@ -1,13 +1,20 @@
 package com.tvscredit.tvscredit.models.person;
 
 import com.tvscredit.tvscredit.models.Address;
+import com.tvscredit.tvscredit.models.BankAccount;
 import com.tvscredit.tvscredit.models.enums.Gender;
 
-import javax.persistence.Embedded;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String name;
 
@@ -31,9 +38,18 @@ public class Person {
 
     private String electricityBillImageUrl;
 
-    private String bankStatementImageUrl;
-
     private Integer cibilScore;
+
+    @OneToMany(mappedBy = "person")
+    private List<BankAccount> allBankAcounts;
+
+    public List<BankAccount> getAllBankAcounts() {
+        return allBankAcounts;
+    }
+
+    public void setAllBankAcounts(List<BankAccount> allBankAcounts) {
+        this.allBankAcounts = allBankAcounts;
+    }
 
     public Integer getCibilScore() {
         return cibilScore;
@@ -53,6 +69,14 @@ public class Person {
 
     public Enum<Gender> getGender() {
         return gender;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setGender(Enum<Gender> gender) {
@@ -129,14 +153,6 @@ public class Person {
 
     public void setElectricityBillImageUrl(String electricityBillImageUrl) {
         this.electricityBillImageUrl = electricityBillImageUrl;
-    }
-
-    public String getBankStatementImageUrl() {
-        return bankStatementImageUrl;
-    }
-
-    public void setBankStatementImageUrl(String bankStatementImageUrl) {
-        this.bankStatementImageUrl = bankStatementImageUrl;
     }
 
 }

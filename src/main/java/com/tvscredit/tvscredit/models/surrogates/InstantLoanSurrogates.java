@@ -10,18 +10,4 @@ import javax.persistence.OneToOne;
 @Entity
 public class InstantLoanSurrogates extends BaseSurrogates{
 
-    @Id
-    private Long id;
-
-    @OneToOne
-    @MapsId
-    private Customer customer;
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

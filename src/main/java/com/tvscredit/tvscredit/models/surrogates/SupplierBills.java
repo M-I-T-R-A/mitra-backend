@@ -1,40 +1,17 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.surrogates;
 
 import com.tvscredit.tvscredit.models.person.Customer;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class SupplierBills{
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @ManyToOne
-    private Customer customer;
 
     private String supplierName;
 
     private String supplierMobile;
 
     private String imageUrl;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public String getSupplierName() {
         return supplierName;
@@ -63,8 +40,6 @@ public class SupplierBills{
     @Override
     public String toString() {
         return "SupplierBills{" +
-                "id=" + id +
-                ", customer=" + customer +
                 ", supplierName='" + supplierName + '\'' +
                 ", supplierMobile='" + supplierMobile + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +

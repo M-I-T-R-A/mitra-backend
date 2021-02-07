@@ -7,15 +7,13 @@ import javax.persistence.Id;
 @Entity
 public class Guarantor extends Person {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    private Boolean isWorthy;
 
-    public Long getId() {
-        return id;
+    public Boolean getWorthy() {
+        return isWorthy;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setWorthy(Boolean worthy) {
+        isWorthy = worthy;
     }
 }

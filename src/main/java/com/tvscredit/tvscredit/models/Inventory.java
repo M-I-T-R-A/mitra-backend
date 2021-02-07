@@ -36,6 +36,8 @@ public class Inventory {
         this.quantity = quantity;
     }
 
+    public Inventory(){}
+
     public Long getId() {
         return id;
     }

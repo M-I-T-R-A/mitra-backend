@@ -1,6 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
 import com.tvscredit.tvscredit.models.person.Customer;
+import com.tvscredit.tvscredit.models.person.Person;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +16,7 @@ public class BankAccount {
     private Long ifsc;
 
     @ManyToOne
-    private Customer customer;
+    private Person person;
 
     private String accountNumber;
 
@@ -40,12 +41,12 @@ public class BankAccount {
         this.ifsc = ifsc;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setCustomer(Customer customerId) {
-        this.customer = customerId;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public String getAccountNumber() {
@@ -77,7 +78,7 @@ public class BankAccount {
         return "BankAccount{" +
                 "id=" + id +
                 ", ifsc=" + ifsc +
-                ", customerId=" + customer +
+                ", customerId=" + person +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", bankStatementImageUrl='" + bankStatementImageUrls + '\'' +
                 ", currentValue=" + currentValue +
