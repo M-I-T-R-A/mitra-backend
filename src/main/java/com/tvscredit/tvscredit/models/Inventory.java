@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
+import com.tvscredit.tvscredit.models.shop.Shop;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

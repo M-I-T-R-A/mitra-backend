@@ -1,11 +1,12 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.shop;
+
+import com.tvscredit.tvscredit.models.Documents;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 @Entity
-public class PurchasedShop {
+public class RentedShop {
 
     @Id
     @GeneratedValue
@@ -40,4 +41,5 @@ public class PurchasedShop {
     public void setDocuments(List<Documents> documents) {
         this.documents = documents;
     }
+
 }

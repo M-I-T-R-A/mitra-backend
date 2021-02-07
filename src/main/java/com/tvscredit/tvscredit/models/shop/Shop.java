@@ -1,7 +1,9 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.shop;
 
+import com.tvscredit.tvscredit.models.Address;
 import com.tvscredit.tvscredit.models.enums.ShopCategory;
 import com.tvscredit.tvscredit.models.enums.ShopOwnership;
+import com.tvscredit.tvscredit.models.person.Customer;
 
 import javax.persistence.*;
 

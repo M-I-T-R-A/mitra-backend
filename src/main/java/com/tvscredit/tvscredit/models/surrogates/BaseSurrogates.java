@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models.surrogates;
 
+import com.tvscredit.tvscredit.models.person.Guarantor;
+
 public class BaseSurrogates {
 
     private LocationCategory locationCategory;

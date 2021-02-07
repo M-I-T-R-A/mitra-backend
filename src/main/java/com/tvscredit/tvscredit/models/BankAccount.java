@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
+import com.tvscredit.tvscredit.models.person.Customer;
+
 import javax.persistence.*;
 import java.util.List;
 

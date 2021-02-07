@@ -1,5 +1,6 @@
-package com.tvscredit.tvscredit.models;
+package com.tvscredit.tvscredit.models.person;
 
+import com.tvscredit.tvscredit.models.Address;
 import com.tvscredit.tvscredit.models.enums.Gender;
 
 import javax.persistence.Embedded;

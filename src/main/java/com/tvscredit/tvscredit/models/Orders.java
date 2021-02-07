@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models;
 
+import com.tvscredit.tvscredit.models.shop.Shop;
+
 import javax.persistence.*;
 import java.util.List;
 

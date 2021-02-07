@@ -1,13 +1,11 @@
-package com.tvscredit.tvscredit.models.surrogates;
-
-import com.tvscredit.tvscredit.models.Person;
+package com.tvscredit.tvscredit.models.person;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Guarantor extends Person {
+public class Customer extends Person{
 
     @Id
     @GeneratedValue

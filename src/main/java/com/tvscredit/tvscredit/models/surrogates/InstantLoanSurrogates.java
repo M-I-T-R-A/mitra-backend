@@ -1,6 +1,6 @@
 package com.tvscredit.tvscredit.models.surrogates;
 
-import com.tvscredit.tvscredit.models.Customer;
+import com.tvscredit.tvscredit.models.person.Customer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
