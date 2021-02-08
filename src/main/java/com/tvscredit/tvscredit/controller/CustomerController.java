@@ -34,7 +34,7 @@ public class CustomerController {
         return ResponseEntity.ok(convertToDto1(customer));
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<CustomerBasicDTO> updateExistingCustomer(@PathVariable Long id, @RequestBody CustomerBasicDTO customerBasicDTO){
         Customer customer = convertToEntity(customerBasicDTO);
         customer.setId(id);
