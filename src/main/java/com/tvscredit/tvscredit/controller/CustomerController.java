@@ -73,6 +73,11 @@ public class CustomerController {
         return ResponseEntity.ok(convertToDto4(instantLoan));
     }
 
+    @GetMapping("/loan/instant/current/{id}")
+    public ResponseEntity<InstantLoanDTO> getCurrentLoan(@PathVariable Long id){
+        return ResponseEntity.ok(convertToDto4(customerService.getLoan(id)));
+    }
+
     @GetMapping("/loan/instant/{id}")
     public ResponseEntity<List<InstantLoanDTO>> getAllLoansOfCustomer(@PathVariable Long id){
         List<InstantLoanDTO> instantLoanDTOS = customerService.getAllLoans(id)
