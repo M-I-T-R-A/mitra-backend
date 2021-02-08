@@ -10,10 +10,20 @@ import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.services.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -39,8 +49,8 @@ public class CustomerController {
     public ResponseEntity<CustomerBasicDTO> updateExistingCustomer(@PathVariable Long id, @RequestBody CustomerBasicDTO customerBasicDTO){
         Customer customer = convertToEntity(customerBasicDTO);
         Customer originalCustomer = customerService.getCustomer(id);
-        BeanUtils.copyProperties(customer, originalCustomer);
-        customerService.saveCustomer(originalCustomer);
+        copyNonNullProperties(customer, originalCustomer);
+        originalCustomer = customerService.saveCustomer(originalCustomer);
         return ResponseEntity.ok(convertToDto1(originalCustomer));
     }
 
@@ -128,6 +138,24 @@ public class CustomerController {
 
     private InstantLoanDTO convertToDto4(InstantLoan entity){
         return modelMapper.map(entity, InstantLoanDTO.class);
+    }
+
+    public void copyNonNullProperties(Object source, Object destination){
+        BeanUtils.copyProperties(source, destination,
+                getNullPropertyNames(source));
+    }
+
+    private String[] getNullPropertyNames (Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+        Set emptyNames = new HashSet();
+        for(java.beans.PropertyDescriptor pd : pds) {
+            //check if value of this property is null then add it to the collection
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) emptyNames.add(pd.getName());
+        }
+        String[] result = new String[emptyNames.size()];
+        return (String[]) emptyNames.toArray(result);
     }
 
 }
