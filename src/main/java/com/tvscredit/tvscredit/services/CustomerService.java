@@ -10,6 +10,8 @@ import com.tvscredit.tvscredit.repository.ApprovedInstantLoanRepository;
 import com.tvscredit.tvscredit.repository.BankAccountRepository;
 import com.tvscredit.tvscredit.repository.CustomerRepository;
 import com.tvscredit.tvscredit.repository.InstantLoanRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,7 +47,9 @@ public class CustomerService {
 
     public void updateInstantLoanSurrogates(Long customerId, InstantLoanSurrogates instantLoanSurrogates){
         setClassCustomer(customerId);
-        customer.setInstantLoanSurrogates(instantLoanSurrogates);
+        InstantLoanSurrogates customerSurrogates = customer.getInstantLoanSurrogates();
+        BeanUtils.copyProperties(instantLoanSurrogates, customerSurrogates);
+        customer.setInstantLoanSurrogates(customerSurrogates);
         saveClassCustomer();
     }
 
@@ -84,31 +88,31 @@ public class CustomerService {
         return getCustomer(customerId).getAllLoans();
     }
 
-    public ApprovedInstantLoan approveLoan(ApprovedInstantLoan approvedInstantLoan, Long loanId){
-        InstantLoan instantLoan = instantLoanRepository.findById(loanId).get();
-        approvedInstantLoan.setInstantLoan(instantLoan);
-        ApprovedInstantLoan newApprovedInstantLoan = approvedInstantLoanRepository.save(approvedInstantLoan);
-
-        instantLoan.setApprovedInstantLoan(newApprovedInstantLoan);
-        instantLoan.setApproval(Approval.APPROVED);
-        customer = instantLoan.getCustomer();
-        customer.setHaveCurrentLoan(Boolean.TRUE);
-        customerRepository.save(customer);
-        instantLoanRepository.save(instantLoan);
-
-        return newApprovedInstantLoan;
-    }
-
-    public void rejectLoan(Long loanId){
-        InstantLoan instantLoan = instantLoanRepository.findById(loanId).get();
-
-        instantLoan.setApproval(Approval.REJECTED);
-        customer = instantLoan.getCustomer();
-        customer.setHaveCurrentLoan(Boolean.FALSE);
-        customerRepository.save(customer);
-        instantLoanRepository.save(instantLoan);
-
-    }
+//    public ApprovedInstantLoan approveLoan(ApprovedInstantLoan approvedInstantLoan, Long loanId){
+//        InstantLoan instantLoan = instantLoanRepository.findById(loanId).get();
+//        approvedInstantLoan.setInstantLoan(instantLoan);
+//        ApprovedInstantLoan newApprovedInstantLoan = approvedInstantLoanRepository.save(approvedInstantLoan);
+//
+//        instantLoan.setApprovedInstantLoan(newApprovedInstantLoan);
+//        instantLoan.setApproval(Approval.APPROVED);
+//        customer = instantLoan.getCustomer();
+//        customer.setHaveCurrentLoan(Boolean.TRUE);
+//        customerRepository.save(customer);
+//        instantLoanRepository.save(instantLoan);
+//
+//        return newApprovedInstantLoan;
+//    }
+//
+//    public void rejectLoan(Long loanId){
+//        InstantLoan instantLoan = instantLoanRepository.findById(loanId).get();
+//
+//        instantLoan.setApproval(Approval.REJECTED);
+//        customer = instantLoan.getCustomer();
+//        customer.setHaveCurrentLoan(Boolean.FALSE);
+//        customerRepository.save(customer);
+//        instantLoanRepository.save(instantLoan);
+//
+//    }
 
     private void setClassCustomer(Long customerId){
         this.customer = getCustomer(customerId);
