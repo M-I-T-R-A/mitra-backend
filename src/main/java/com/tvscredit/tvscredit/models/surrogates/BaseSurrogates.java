@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models.surrogates;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.enums.Competition;
 import com.tvscredit.tvscredit.models.enums.LocationCategory;
 import com.tvscredit.tvscredit.models.person.Customer;
@@ -15,6 +16,7 @@ public class BaseSurrogates {
     @Id
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Customer customer;

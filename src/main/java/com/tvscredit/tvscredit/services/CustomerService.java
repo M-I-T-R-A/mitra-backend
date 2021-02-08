@@ -5,6 +5,7 @@ import com.tvscredit.tvscredit.models.enums.Approval;
 import com.tvscredit.tvscredit.models.loans.ApprovedInstantLoan;
 import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.person.Customer;
+import com.tvscredit.tvscredit.models.surrogates.Assets;
 import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
 import com.tvscredit.tvscredit.repository.ApprovedInstantLoanRepository;
 import com.tvscredit.tvscredit.repository.BankAccountRepository;
@@ -48,7 +49,17 @@ public class CustomerService {
     public void updateInstantLoanSurrogates(Long customerId, InstantLoanSurrogates instantLoanSurrogates){
         setClassCustomer(customerId);
         InstantLoanSurrogates customerSurrogates = customer.getInstantLoanSurrogates();
-        BeanUtils.copyProperties(instantLoanSurrogates, customerSurrogates);
+
+        //Assets
+        if(customerSurrogates.getAssetsList()==null){
+            customerSurrogates.setAssetsList(instantLoanSurrogates.getAssetsList());
+        }else{
+            List<Assets> assetsList = customerSurrogates.getAssetsList();
+            assetsList.addAll(instantLoanSurrogates.getAssetsList());
+        }
+
+
+
         customer.setInstantLoanSurrogates(customerSurrogates);
         saveClassCustomer();
     }
