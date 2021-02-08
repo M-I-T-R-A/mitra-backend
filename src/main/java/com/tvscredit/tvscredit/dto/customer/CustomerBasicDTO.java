@@ -37,6 +37,16 @@ public class CustomerBasicDTO {
 
     private Boolean isVerified;
 
+    private Boolean checkNumber;
+
+    public Boolean getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Boolean checkNumber) {
+        this.checkNumber = checkNumber;
+    }
+
     public Boolean getVerified() {
         return isVerified;
     }

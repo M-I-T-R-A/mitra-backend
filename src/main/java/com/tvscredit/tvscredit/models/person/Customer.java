@@ -12,6 +12,8 @@ public class Customer extends Person{
 
     private Boolean haveCurrentLoan;
 
+    private Boolean checkNumber;
+
     private Integer status;
 
     @OneToMany(mappedBy = "customer")
@@ -41,6 +43,14 @@ public class Customer extends Person{
 
     public List<BankAccount> getAllBankAccounts() {
         return allBankAccounts;
+    }
+
+    public Boolean getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Boolean checkNumber) {
+        this.checkNumber = checkNumber;
     }
 
     public void setAllBankAccounts(List<BankAccount> allBankAccounts) {

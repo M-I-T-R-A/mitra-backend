@@ -1,17 +1,24 @@
-package com.tvscredit.tvscredit.models.surrogates;
+package com.tvscredit.tvscredit.models.shop;
 
 import com.tvscredit.tvscredit.models.person.Customer;
+import com.tvscredit.tvscredit.models.shop.PurchasedItemStock;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Embeddable
-public class SupplierBills{
+public class PurchasedItemBill {
+
+    private Date dateOfPurchase;
 
     private String supplierName;
 
     private String supplierMobile;
 
     private String imageUrl;
+
+    @OneToOne(mappedBy = "purchasedItemBill")
+    private PurchasedItemStock purchasedItemStock;
 
     public String getSupplierName() {
         return supplierName;
@@ -35,6 +42,22 @@ public class SupplierBills{
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Date getDateOfPurchase() {
+        return dateOfPurchase;
+    }
+
+    public void setDateOfPurchase(Date dateOfPurchase) {
+        this.dateOfPurchase = dateOfPurchase;
+    }
+
+    public PurchasedItemStock getPurchasedItemStock() {
+        return purchasedItemStock;
+    }
+
+    public void setPurchasedItemStock(PurchasedItemStock purchasedItemStock) {
+        this.purchasedItemStock = purchasedItemStock;
     }
 
     @Override
