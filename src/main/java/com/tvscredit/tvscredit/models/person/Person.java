@@ -18,7 +18,7 @@ public class Person {
 
     private String name;
 
-    private Enum<Gender> gender;
+    private Gender gender;
 
     private String phoneNumber;
 
@@ -79,7 +79,7 @@ public class Person {
         this.id = id;
     }
 
-    public void setGender(Enum<Gender> gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

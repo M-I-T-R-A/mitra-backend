@@ -8,7 +8,7 @@ public class CustomerBasicDTO {
 
     private String name;
 
-    private Enum<Gender> gender;
+    private Gender gender;
 
     private String phoneNumber;
 
@@ -56,11 +56,11 @@ public class CustomerBasicDTO {
         this.name = name;
     }
 
-    public Enum<Gender> getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(Enum<Gender> gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
