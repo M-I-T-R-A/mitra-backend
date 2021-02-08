@@ -33,6 +33,9 @@ public class Shop {
 
     private ShopOwnership ownership;
 
+    @Embedded
+    private WareHouse wareHouse;
+
     @OneToOne
     private Customer owner;
 

@@ -5,6 +5,7 @@ import com.tvscredit.tvscredit.models.enums.Competition;
 import com.tvscredit.tvscredit.models.enums.LocationCategory;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.person.Guarantor;
+import com.tvscredit.tvscredit.models.shop.PurchasedItemBill;
 
 import javax.persistence.*;
 
@@ -34,10 +35,21 @@ public class BaseSurrogates {
     private List<IncomeTaxReturn> taxReturns;
 
     @ElementCollection
-    private List<SupplierBills> bills;
+    private List<PurchasedItemBill> bills;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Guarantor guarantor;
+
+    @ElementCollection
+    private List<Double> creditAmountOfShopCustomers;
+
+    public List<Double> getCreditAmountOfShopCustomers() {
+        return creditAmountOfShopCustomers;
+    }
+
+    public void setCreditAmountOfShopCustomers(List<Double> creditAmountOfShopCustomers) {
+        this.creditAmountOfShopCustomers = creditAmountOfShopCustomers;
+    }
 
     public Guarantor getGuarantor() {
         return guarantor;
@@ -83,11 +95,11 @@ public class BaseSurrogates {
         return id;
     }
 
-    public List<SupplierBills> getBills() {
+    public List<PurchasedItemBill> getBills() {
         return bills;
     }
 
-    public void setBills(List<SupplierBills> bills) {
+    public void setBills(List<PurchasedItemBill> bills) {
         this.bills = bills;
     }
 
