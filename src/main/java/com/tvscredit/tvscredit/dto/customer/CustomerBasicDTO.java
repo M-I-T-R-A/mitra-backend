@@ -22,7 +22,9 @@ public class CustomerBasicDTO {
 
     private Address residenceAddress;
 
-    private String aadharCardImageUrl;
+    private String aadharCardFrontImageUrl;
+
+    private String aadharCardBackImageUrl;
 
     private String panCardImageUrl;
 
@@ -50,6 +52,22 @@ public class CustomerBasicDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getAadharCardFrontImageUrl() {
+        return aadharCardFrontImageUrl;
+    }
+
+    public void setAadharCardFrontImageUrl(String aadharCardFrontImageUrl) {
+        this.aadharCardFrontImageUrl = aadharCardFrontImageUrl;
+    }
+
+    public String getAadharCardBackImageUrl() {
+        return aadharCardBackImageUrl;
+    }
+
+    public void setAadharCardBackImageUrl(String aadharCardBackImageUrl) {
+        this.aadharCardBackImageUrl = aadharCardBackImageUrl;
     }
 
     public void setName(String name) {
@@ -110,14 +128,6 @@ public class CustomerBasicDTO {
 
     public void setResidenceAddress(Address residenceAddress) {
         this.residenceAddress = residenceAddress;
-    }
-
-    public String getAadharCardImageUrl() {
-        return aadharCardImageUrl;
-    }
-
-    public void setAadharCardImageUrl(String aadharCardImageUrl) {
-        this.aadharCardImageUrl = aadharCardImageUrl;
     }
 
     public String getPanCardImageUrl() {

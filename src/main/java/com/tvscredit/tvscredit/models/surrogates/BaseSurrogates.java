@@ -36,7 +36,7 @@ public class BaseSurrogates {
     @ElementCollection
     private List<SupplierBills> bills;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Guarantor guarantor;
 
     public Guarantor getGuarantor() {

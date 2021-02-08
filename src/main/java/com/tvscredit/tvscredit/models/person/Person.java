@@ -32,7 +32,9 @@ public class Person {
 
     private Address residenceAddress;
 
-    private String aadharCardImageUrl;
+    private String aadharCardFrontImageUrl;
+
+    private String aadharCardBackImageUrl;
 
     private String panCardImageUrl;
 
@@ -40,19 +42,16 @@ public class Person {
 
     private Integer cibilScore;
 
-    @OneToMany(mappedBy = "person")
-    private List<BankAccount> allBankAcounts;
-
-    public List<BankAccount> getAllBankAcounts() {
-        return allBankAcounts;
-    }
-
-    public void setAllBankAcounts(List<BankAccount> allBankAcounts) {
-        this.allBankAcounts = allBankAcounts;
-    }
-
     public Integer getCibilScore() {
         return cibilScore;
+    }
+
+    public String getAadharCardBackImageUrl() {
+        return aadharCardBackImageUrl;
+    }
+
+    public void setAadharCardBackImageUrl(String aadharCardBackImageUrl) {
+        this.aadharCardBackImageUrl = aadharCardBackImageUrl;
     }
 
     public void setCibilScore(Integer cibilScore) {
@@ -131,12 +130,12 @@ public class Person {
         this.residenceAddress = residenceAddress;
     }
 
-    public String getAadharCardImageUrl() {
-        return aadharCardImageUrl;
+    public String getAadharCardFrontImageUrl() {
+        return aadharCardFrontImageUrl;
     }
 
-    public void setAadharCardImageUrl(String aadharCardImageUrl) {
-        this.aadharCardImageUrl = aadharCardImageUrl;
+    public void setAadharCardFrontImageUrl(String aadharCardFrontImageUrl) {
+        this.aadharCardFrontImageUrl = aadharCardFrontImageUrl;
     }
 
     public String getPanCardImageUrl() {

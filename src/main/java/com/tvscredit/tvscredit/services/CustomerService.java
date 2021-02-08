@@ -7,10 +7,7 @@ import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.surrogates.Assets;
 import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
-import com.tvscredit.tvscredit.repository.ApprovedInstantLoanRepository;
-import com.tvscredit.tvscredit.repository.BankAccountRepository;
-import com.tvscredit.tvscredit.repository.CustomerRepository;
-import com.tvscredit.tvscredit.repository.InstantLoanRepository;
+import com.tvscredit.tvscredit.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -23,16 +20,19 @@ public class CustomerService {
     private BankAccountRepository bankAccountRepository;
     private InstantLoanRepository instantLoanRepository;
     private ApprovedInstantLoanRepository approvedInstantLoanRepository;
+    private InstantLoanSurrogatesRepository instantLoanSurrogatesRepository;
     private Customer customer;
 
     CustomerService(CustomerRepository customerRepository
                     ,BankAccountRepository bankAccountRepository
                     ,InstantLoanRepository instantLoanRepository
-                    ,ApprovedInstantLoanRepository approvedInstantLoanRepository){
+                    ,ApprovedInstantLoanRepository approvedInstantLoanRepository
+                    ,InstantLoanSurrogatesRepository instantLoanSurrogatesRepository){
         this.customerRepository = customerRepository;
         this.bankAccountRepository = bankAccountRepository;
         this.instantLoanRepository = instantLoanRepository;
         this.approvedInstantLoanRepository = approvedInstantLoanRepository;
+        this.instantLoanSurrogatesRepository = instantLoanSurrogatesRepository;
     }
 
     public Customer addCustomer(Customer customer){
@@ -50,16 +50,14 @@ public class CustomerService {
         setClassCustomer(customerId);
         InstantLoanSurrogates customerSurrogates = customer.getInstantLoanSurrogates();
 
-        //Assets
-        if(customerSurrogates.getAssetsList()==null){
-            customerSurrogates.setAssetsList(instantLoanSurrogates.getAssetsList());
+        if(customerSurrogates == null){
+            customerSurrogates = instantLoanSurrogates;
+            customerSurrogates.setCustomer(customer);
         }else{
-            List<Assets> assetsList = customerSurrogates.getAssetsList();
-            assetsList.addAll(instantLoanSurrogates.getAssetsList());
+            BeanUtils.copyProperties(instantLoanSurrogates, customerSurrogates);
         }
 
-
-
+        instantLoanSurrogatesRepository.save(customerSurrogates);
         customer.setInstantLoanSurrogates(customerSurrogates);
         saveClassCustomer();
     }
@@ -69,9 +67,9 @@ public class CustomerService {
         bankAccount.setPerson(customer);
         BankAccount newBankAccount = bankAccountRepository.save(bankAccount);
 
-        List<BankAccount> bankAccountList = customer.getAllBankAcounts();
+        List<BankAccount> bankAccountList = customer.getAllBankAccounts();
         bankAccountList.add(bankAccount);
-        customer.setAllBankAcounts(bankAccountList);
+        customer.setAllBankAccounts(bankAccountList);
         customerRepository.save(customer);
 
         return newBankAccount;

@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models.person;
 
+import com.tvscredit.tvscredit.models.BankAccount;
 import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
 
@@ -19,6 +20,9 @@ public class Customer extends Person{
     @OneToOne(mappedBy = "customer")
     private InstantLoanSurrogates instantLoanSurrogates;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<BankAccount> allBankAccounts;
+
     public Boolean getHaveCurrentLoan() {
         return haveCurrentLoan;
     }
@@ -33,6 +37,14 @@ public class Customer extends Person{
 
     public Integer getStatus() {
         return status;
+    }
+
+    public List<BankAccount> getAllBankAccounts() {
+        return allBankAccounts;
+    }
+
+    public void setAllBankAccounts(List<BankAccount> allBankAccounts) {
+        this.allBankAccounts = allBankAccounts;
     }
 
     public void setStatus(Integer status) {

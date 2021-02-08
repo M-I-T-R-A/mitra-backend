@@ -60,7 +60,7 @@ public class CustomerController {
 
     @GetMapping("/bankaccount/{id}")
     public ResponseEntity<List<BankAccountDTO>> getAllBankAccounts(@PathVariable Long id){
-        List<BankAccount> bankAccounts = customerService.getCustomer(id).getAllBankAcounts();
+        List<BankAccount> bankAccounts = customerService.getCustomer(id).getAllBankAccounts();
         List<BankAccountDTO> bankAccountDTOS = bankAccounts.stream()
                 .map(this::convertToDto3)
                 .collect(Collectors.toList());

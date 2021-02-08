@@ -15,8 +15,8 @@ public class BankAccount {
 
     private Long ifsc;
 
-    @ManyToOne
-    private Person person;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Customer person;
 
     private String accountNumber;
 
@@ -45,7 +45,7 @@ public class BankAccount {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(Customer person) {
         this.person = person;
     }
 
