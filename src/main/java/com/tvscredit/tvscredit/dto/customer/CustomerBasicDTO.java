@@ -4,7 +4,6 @@ import com.tvscredit.tvscredit.models.Address;
 import com.tvscredit.tvscredit.models.enums.Gender;
 
 public class CustomerBasicDTO {
-    private Long id;
 
     private String name;
 
@@ -40,14 +39,6 @@ public class CustomerBasicDTO {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
