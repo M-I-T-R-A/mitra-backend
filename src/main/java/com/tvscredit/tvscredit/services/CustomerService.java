@@ -35,7 +35,7 @@ public class CustomerService {
         this.instantLoanSurrogatesRepository = instantLoanSurrogatesRepository;
     }
 
-    public Customer addCustomer(Customer customer){
+    public Customer saveCustomer(Customer customer){
         return customerRepository.save(customer);
     }
 
@@ -87,13 +87,13 @@ public class CustomerService {
         return createdInstantLoan;
     }
 
-    public InstantLoan getLoan(Long customerId){
+    public InstantLoan getInstantLoan(Long customerId){
         customer = getCustomer(customerId);
         int lastIndex = customer.getAllLoans().size() - 1;
         return customer.getAllLoans().get(lastIndex);
     }
 
-    public List<InstantLoan> getAllLoans(Long customerId){
+    public List<InstantLoan> getAllInstantLoans(Long customerId){
         return getCustomer(customerId).getAllLoans();
     }
 
@@ -133,6 +133,10 @@ public class CustomerService {
 
     public Customer getCustomer(Long customerId){
         return customerRepository.findById(customerId).get();
+    }
+
+    public List<Customer> getAllCustomer(){
+        return (List<Customer>) customerRepository.findAll();
     }
 
     //public void extractElectricityBillAmount(Customer customer){};

@@ -9,6 +9,7 @@ import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.services.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,16 +31,17 @@ public class CustomerController {
 
     @PostMapping("/add")
     public ResponseEntity<CustomerBasicDTO> addNewCustomer(@RequestBody CustomerBasicDTO customerBasicDTO){
-        Customer customer = customerService.addCustomer(convertToEntity(customerBasicDTO));
+        Customer customer = customerService.saveCustomer(convertToEntity(customerBasicDTO));
         return ResponseEntity.ok(convertToDto1(customer));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<CustomerBasicDTO> updateExistingCustomer(@PathVariable Long id, @RequestBody CustomerBasicDTO customerBasicDTO){
         Customer customer = convertToEntity(customerBasicDTO);
-        customer.setId(id);
-        customer = customerService.addCustomer(customer);
-        return ResponseEntity.ok(convertToDto1(customer));
+        Customer originalCustomer = customerService.getCustomer(id);
+        BeanUtils.copyProperties(customer, originalCustomer);
+        customerService.saveCustomer(originalCustomer);
+        return ResponseEntity.ok(convertToDto1(originalCustomer));
     }
 
     @GetMapping("/{id}")
@@ -83,12 +85,12 @@ public class CustomerController {
 
     @GetMapping("/loan/instant/current/{id}")
     public ResponseEntity<InstantLoanDTO> getCurrentLoan(@PathVariable Long id){
-        return ResponseEntity.ok(convertToDto4(customerService.getLoan(id)));
+        return ResponseEntity.ok(convertToDto4(customerService.getInstantLoan(id)));
     }
 
     @GetMapping("/loan/instant/{id}")
     public ResponseEntity<List<InstantLoanDTO>> getAllLoansOfCustomer(@PathVariable Long id){
-        List<InstantLoanDTO> instantLoanDTOS = customerService.getAllLoans(id)
+        List<InstantLoanDTO> instantLoanDTOS = customerService.getAllInstantLoans(id)
                 .stream()
                 .map(this::convertToDto4)
                 .collect(Collectors.toList());

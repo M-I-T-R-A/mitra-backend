@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models.loans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.enums.Approval;
 import com.tvscredit.tvscredit.models.person.Customer;
 import org.hibernate.annotations.ColumnDefault;
@@ -20,6 +21,7 @@ public class InstantLoan {
 
     private Approval approval = Approval.WAITING;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "instantLoan")
     private ApprovedInstantLoan approvedInstantLoan;
 

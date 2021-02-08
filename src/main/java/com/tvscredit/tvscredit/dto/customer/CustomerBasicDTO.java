@@ -35,6 +35,16 @@ public class CustomerBasicDTO {
 
     private Integer status;
 
+    private Boolean isVerified;
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(Boolean verified) {
+        isVerified = verified;
+    }
+
     public Integer getStatus() {
         return status;
     }
