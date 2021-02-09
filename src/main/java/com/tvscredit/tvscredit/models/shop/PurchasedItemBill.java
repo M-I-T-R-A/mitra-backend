@@ -1,15 +1,18 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.shop.PurchasedItemStock;
 
 import javax.persistence.*;
 import java.sql.Date;
 
-@Embeddable
+@Entity
 public class PurchasedItemBill {
 
-    private Date dateOfPurchase;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String supplierName;
 
@@ -17,6 +20,7 @@ public class PurchasedItemBill {
 
     private String imageUrl;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "purchasedItemBill")
     private PurchasedItemStock purchasedItemStock;
 
@@ -42,14 +46,6 @@ public class PurchasedItemBill {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public Date getDateOfPurchase() {
-        return dateOfPurchase;
-    }
-
-    public void setDateOfPurchase(Date dateOfPurchase) {
-        this.dateOfPurchase = dateOfPurchase;
     }
 
     public PurchasedItemStock getPurchasedItemStock() {

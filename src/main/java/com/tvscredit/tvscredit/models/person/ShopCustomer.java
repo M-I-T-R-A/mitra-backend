@@ -1,8 +1,8 @@
 package com.tvscredit.tvscredit.models.person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.tvscredit.tvscredit.models.shop.Shop;
+
+import javax.persistence.*;
 
 @Entity
 public class ShopCustomer {
@@ -13,11 +13,23 @@ public class ShopCustomer {
 
     private String name;
 
+    @Column(unique = true)
     private String phoneNumber;
 
     private Double creditAmount;
 
     private Boolean isCreditAmountVerified;
+
+    @ManyToOne
+    private Shop shop;
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public Double getCreditAmount() {
         return creditAmount;

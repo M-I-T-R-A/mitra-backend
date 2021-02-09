@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.util.List;
@@ -13,9 +15,11 @@ public class WareHouse {
     @ElementCollection
     private List<Double> areaOfWareHouses;
 
+    @JsonIgnore
     @ElementCollection
     private Set<StockOfItems> itemsSet;
 
+    @JsonIgnore
     private Double totalValueOfItems;
 
     public Integer getNumberOfWareHouses() {
@@ -48,5 +52,14 @@ public class WareHouse {
 
     public void setTotalValueOfItems(Double totalValueOfItems) {
         this.totalValueOfItems = totalValueOfItems;
+    }
+
+    public StockOfItems isItemPresent(StockOfItems stockOfItems){
+        for (StockOfItems item:itemsSet){
+            if(stockOfItems.getName() == item.getName()){
+                return item;
+            }
+        }
+        return null;
     }
 }

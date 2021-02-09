@@ -1,6 +1,9 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -10,12 +13,16 @@ public class PurchasedItemStock {
     @GeneratedValue
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     private PurchasedItemBill purchasedItemBill;
+
+    private Date dateOfPurchase;
 
     @ManyToOne
     private Shop shop;
 
+    @ElementCollection
     private Set<StockOfItems> stockOfItems;
 
     public Long getId() {
@@ -32,6 +39,14 @@ public class PurchasedItemStock {
 
     public void setPurchasedItemBill(PurchasedItemBill purchasedItemBill) {
         this.purchasedItemBill = purchasedItemBill;
+    }
+
+    public Date getDateOfPurchase() {
+        return dateOfPurchase;
+    }
+
+    public void setDateOfPurchase(Date dateOfPurchase) {
+        this.dateOfPurchase = dateOfPurchase;
     }
 
     public Shop getShop() {

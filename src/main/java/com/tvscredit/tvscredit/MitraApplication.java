@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit;
 
+import com.tvscredit.tvscredit.config.BeanNotNullCopy;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,11 @@ public class MitraApplication {
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
+	}
+
+	@Bean
+	public BeanNotNullCopy createBeanNotNullCopy(){
+		return new BeanNotNullCopy();
 	}
 
 }

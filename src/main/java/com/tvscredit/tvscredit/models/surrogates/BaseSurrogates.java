@@ -34,7 +34,7 @@ public class BaseSurrogates {
     @ElementCollection
     private List<IncomeTaxReturn> taxReturns;
 
-    @ElementCollection
+    @OneToMany
     private List<PurchasedItemBill> bills;
 
     @OneToOne(cascade = CascadeType.ALL)

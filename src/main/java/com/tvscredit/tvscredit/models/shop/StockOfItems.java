@@ -1,7 +1,11 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.enums.Unit;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class StockOfItems {
 
     private String Name;
@@ -12,6 +16,7 @@ public class StockOfItems {
 
     private Double quantity;
 
+    @JsonIgnore
     private Double totalValue;
 
     public String getName() {

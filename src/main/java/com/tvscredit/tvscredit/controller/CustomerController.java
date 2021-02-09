@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.controller;
 
+import com.tvscredit.tvscredit.config.BeanNotNullCopy;
 import com.tvscredit.tvscredit.dto.bankaccount.BankAccountDTO;
 import com.tvscredit.tvscredit.dto.customer.CustomerBasicDTO;
 import com.tvscredit.tvscredit.dto.customer.CustomerInstantLoanSurrogateDTO;
@@ -31,11 +32,12 @@ import java.util.stream.Collectors;
 public class CustomerController {
 
     private CustomerService customerService;
-
+    private BeanNotNullCopy beanNotNullCopy;
     private ModelMapper modelMapper;
 
-    CustomerController(CustomerService customerService, ModelMapper modelMapper){
+    CustomerController(CustomerService customerService, BeanNotNullCopy beanNotNullCopy, ModelMapper modelMapper){
         this.customerService = customerService;
+        this.beanNotNullCopy = beanNotNullCopy;
         this.modelMapper = modelMapper;
     }
 
@@ -49,7 +51,7 @@ public class CustomerController {
     public ResponseEntity<CustomerBasicDTO> updateExistingCustomer(@PathVariable Long id, @RequestBody CustomerBasicDTO customerBasicDTO){
         Customer customer = convertToEntity(customerBasicDTO);
         Customer originalCustomer = customerService.getCustomer(id);
-        copyNonNullProperties(customer, originalCustomer);
+        beanNotNullCopy.copyNonNullProperties(customer, originalCustomer);
         originalCustomer = customerService.saveCustomer(originalCustomer);
         return ResponseEntity.ok(convertToDto1(originalCustomer));
     }
@@ -138,24 +140,6 @@ public class CustomerController {
 
     private InstantLoanDTO convertToDto4(InstantLoan entity){
         return modelMapper.map(entity, InstantLoanDTO.class);
-    }
-
-    public void copyNonNullProperties(Object source, Object destination){
-        BeanUtils.copyProperties(source, destination,
-                getNullPropertyNames(source));
-    }
-
-    private String[] getNullPropertyNames (Object source) {
-        final BeanWrapper src = new BeanWrapperImpl(source);
-        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
-        Set emptyNames = new HashSet();
-        for(java.beans.PropertyDescriptor pd : pds) {
-            //check if value of this property is null then add it to the collection
-            Object srcValue = src.getPropertyValue(pd.getName());
-            if (srcValue == null) emptyNames.add(pd.getName());
-        }
-        String[] result = new String[emptyNames.size()];
-        return (String[]) emptyNames.toArray(result);
     }
 
 }

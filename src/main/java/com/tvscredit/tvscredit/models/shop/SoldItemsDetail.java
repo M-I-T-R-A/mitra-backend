@@ -1,5 +1,8 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class SoldItemsDetail extends StockOfItems{
 
     private Double amountPaid;

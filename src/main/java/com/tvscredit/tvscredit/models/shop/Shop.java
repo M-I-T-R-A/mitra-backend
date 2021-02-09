@@ -1,9 +1,11 @@
 package com.tvscredit.tvscredit.models.shop;
 
 import com.tvscredit.tvscredit.models.Address;
+import com.tvscredit.tvscredit.models.Documents;
 import com.tvscredit.tvscredit.models.enums.ShopCategory;
 import com.tvscredit.tvscredit.models.enums.ShopOwnership;
 import com.tvscredit.tvscredit.models.person.Customer;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -33,11 +35,30 @@ public class Shop {
 
     private ShopOwnership ownership;
 
+    @ElementCollection
+    private List<Documents> shopRelatedDocs;
+
     @Embedded
     private WareHouse wareHouse;
 
     @OneToOne
     private Customer owner;
+
+    public List<Documents> getShopRelatedDocs() {
+        return shopRelatedDocs;
+    }
+
+    public void setShopRelatedDocs(List<Documents> shopRelatedDocs) {
+        this.shopRelatedDocs = shopRelatedDocs;
+    }
+
+    public WareHouse getWareHouse() {
+        return wareHouse;
+    }
+
+    public void setWareHouse(WareHouse wareHouse) {
+        this.wareHouse = wareHouse;
+    }
 
     public Long getId() {
         return id;
