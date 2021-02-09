@@ -1,13 +1,7 @@
 package com.tvscredit.tvscredit.controller;
 
-import com.tvscredit.tvscredit.dto.shop.PurchaseOrderDTO;
-import com.tvscredit.tvscredit.dto.shop.PurchasedItemBillDTO;
-import com.tvscredit.tvscredit.dto.shop.PurchasedItemStockDTO;
-import com.tvscredit.tvscredit.dto.shop.ShopDTO;
-import com.tvscredit.tvscredit.models.shop.PurchasedItemBill;
-import com.tvscredit.tvscredit.models.shop.PurchasedItemStock;
-import com.tvscredit.tvscredit.models.shop.Shop;
-import com.tvscredit.tvscredit.models.shop.StockOfItems;
+import com.tvscredit.tvscredit.dto.shop.*;
+import com.tvscredit.tvscredit.models.shop.*;
 import com.tvscredit.tvscredit.services.ShopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -51,14 +45,21 @@ public class ShopController {
 
     @PostMapping("/purchase")
     public ResponseEntity.BodyBuilder purchaseStock(@RequestBody PurchaseOrderDTO purchaseOrderDTO){
-        PurchasedItemStock purchasedItemStock = convertToEntity(purchaseOrderDTO.getPurchasedItemStockDTO());
+        PurchasedItemStockDTO purchasedItemStockDTO = purchaseOrderDTO.getPurchasedItemStockDTO();
+        PurchasedItemStock purchasedItemStock = convertToEntity(purchasedItemStockDTO);
         PurchasedItemBill purchasedItemBill = convertToEntity(purchaseOrderDTO.getPurchasedItemBillDTO());
-        purchasedItemStock.setStockOfItems(new HashSet<>(purchaseOrderDTO.getPurchasedItemStockDTO().getStockOfItems()));
+        purchasedItemStock.setStockOfItems(purchasedItemStockDTO.getStockOfItems());
         shopService.purchaseStocks(purchasedItemStock, purchasedItemBill, purchaseOrderDTO.getCustomerId());
         return ResponseEntity.ok();
     }
 
     @PostMapping("/sell")
+    public ResponseEntity.BodyBuilder sellStock(@RequestBody SoldItemsDTO soldItemsDTO){
+        SoldItems soldItems = convertToEntity(soldItemsDTO);
+        soldItems.setSoldItems(soldItemsDTO.getSoldItems());
+        shopService.soldStocksToCustomer(soldItems, soldItemsDTO.getCustomerId());
+        return ResponseEntity.ok();
+    }
 
     private Shop convertToEntity(ShopDTO dto){
         return modelMapper.map(dto, Shop.class);
@@ -70,6 +71,10 @@ public class ShopController {
 
     private PurchasedItemBill convertToEntity(PurchasedItemBillDTO dto){
         return modelMapper.map(dto, PurchasedItemBill.class);
+    }
+
+    private SoldItems convertToEntity(SoldItemsDTO dto){
+        return modelMapper.map(dto, SoldItems.class);
     }
 
     private ShopDTO convertToDto1(Shop entity){

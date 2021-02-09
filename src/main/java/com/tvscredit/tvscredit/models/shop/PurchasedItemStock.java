@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 public class PurchasedItemStock {
@@ -63,5 +65,9 @@ public class PurchasedItemStock {
 
     public void setStockOfItems(Set<StockOfItems> stockOfItems) {
         this.stockOfItems = stockOfItems;
+    }
+
+    public void setStockOfItems(List<StockOfItems> stockOfItems) {
+        this.stockOfItems = new HashSet<>(stockOfItems);
     }
 }

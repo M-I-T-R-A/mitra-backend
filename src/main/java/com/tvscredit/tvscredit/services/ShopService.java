@@ -128,7 +128,9 @@ public class ShopService {
         purchasedItemStockRepository.save(purchasedItemStock);
     }
 
-    public void soldStocksToCustomer(SoldItems soldItems){
+    public void soldStocksToCustomer(SoldItems soldItems, Long customerId){
+
+        soldItems.setShop(getShopOfCustomer(customerId));
 
         Double credit = 0.0;
 

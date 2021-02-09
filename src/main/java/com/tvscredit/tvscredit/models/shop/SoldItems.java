@@ -4,7 +4,9 @@ import com.tvscredit.tvscredit.models.person.ShopCustomer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 public class SoldItems {
@@ -62,5 +64,9 @@ public class SoldItems {
 
     public void setSoldItems(Set<SoldItemsDetail> soldItems) {
         this.soldItems = soldItems;
+    }
+
+    public void setSoldItems(List<SoldItemsDetail> soldItems) {
+        this.soldItems = new HashSet<>(soldItems);
     }
 }
