@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class StockOfItems {
 
-    private String Name;
+    private String name;
 
     private Double pricePerUnit;
 
@@ -20,11 +20,11 @@ public class StockOfItems {
     private Double totalValue;
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Double getPricePerUnit() {

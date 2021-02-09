@@ -61,6 +61,11 @@ public class ShopController {
         return ResponseEntity.ok();
     }
 
+    @GetMapping("/product/info")
+    public ResponseEntity<StockOfItems> getProductDetails(@RequestParam Long customerId, @RequestParam String name){
+        return ResponseEntity.ok(shopService.getStockInfoOfShop(customerId, name));
+    }
+
     private Shop convertToEntity(ShopDTO dto){
         return modelMapper.map(dto, Shop.class);
     }
