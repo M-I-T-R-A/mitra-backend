@@ -16,8 +16,18 @@ public class StockOfItems {
 
     private Double quantity;
 
+    private String category;
+
     @JsonIgnore
     private Double totalValue;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getName() {
         return name;
