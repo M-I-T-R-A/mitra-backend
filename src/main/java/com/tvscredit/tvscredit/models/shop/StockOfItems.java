@@ -1,7 +1,6 @@
 package com.tvscredit.tvscredit.models.shop;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tvscredit.tvscredit.models.enums.Unit;
 
 import javax.persistence.Embeddable;
 
@@ -12,7 +11,7 @@ public class StockOfItems {
 
     private Double pricePerUnit;
 
-    private Unit unit;
+    private String unit;
 
     private Double quantity;
 
@@ -45,11 +44,11 @@ public class StockOfItems {
         this.pricePerUnit = pricePerUnit;
     }
 
-    public Unit getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(Unit unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 
