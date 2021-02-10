@@ -67,7 +67,7 @@ public class CustomerController {
         Customer customer = customerService.getCustomerFromMobileNumber(phoneNumber);
         if(customer == null){
             return new ResponseEntity<CustomerBasicDTO>(
-                    convertToDto1(customer),
+                    new CustomerBasicDTO(),
                     HttpStatus.BAD_REQUEST);
         }else{
             return ResponseEntity.ok(convertToDto1(customer));
