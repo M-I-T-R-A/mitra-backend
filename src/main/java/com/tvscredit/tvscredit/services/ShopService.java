@@ -64,18 +64,20 @@ public class ShopService {
         return shopRepository.findByOwner(customerService.getCustomer(customerId));
     }
 
-    public void updateInventory(StockOfItems stockOfItems, Long customerId){
+    public void updateInventory(List<StockOfItems> stockOfItemsList, Long customerId){
         Shop shop = getShopOfCustomer(customerId);
         WareHouse wareHouse = shop.getWareHouse();
-
-        StockOfItems wareHouseItem = wareHouse.isItemPresent(stockOfItems);
         Set<StockOfItems> itemsSet = wareHouse.getItemsSet();
 
-        if(wareHouseItem != null){
-            itemsSet.remove(wareHouseItem);
+
+        for(StockOfItems stockOfItems:stockOfItemsList){
+            StockOfItems wareHouseItem = wareHouse.isItemPresent(stockOfItems);
+            if(wareHouseItem != null){
+                itemsSet.remove(wareHouseItem);
+            }
+            itemsSet.add(stockOfItems);
         }
 
-        itemsSet.add(stockOfItems);
         wareHouse.setItemsSet(itemsSet);
         shop.setWareHouse(wareHouse);
 
@@ -186,7 +188,7 @@ public class ShopService {
         List<StockOfItems> stockOfItemsList = new ArrayList<>();
 
         for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
-            if(FuzzySearch.ratio(productName, stockOfItems.getName()) >= 75){
+            if(FuzzySearch.partialRatio(productName, stockOfItems.getName()) >= 70){
                 stockOfItemsList.add(stockOfItems);
             }
         }
