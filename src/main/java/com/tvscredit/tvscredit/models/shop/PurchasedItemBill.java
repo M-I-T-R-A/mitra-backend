@@ -3,6 +3,7 @@ package com.tvscredit.tvscredit.models.shop;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.shop.PurchasedItemStock;
+import com.tvscredit.tvscredit.models.surrogates.BaseSurrogates;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -23,6 +24,25 @@ public class PurchasedItemBill {
     @JsonIgnore
     @OneToOne(mappedBy = "purchasedItemBill")
     private PurchasedItemStock purchasedItemStock;
+
+    @ManyToOne
+    private BaseSurrogates baseSurrogates;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BaseSurrogates getBaseSurrogates() {
+        return baseSurrogates;
+    }
+
+    public void setBaseSurrogates(BaseSurrogates baseSurrogates) {
+        this.baseSurrogates = baseSurrogates;
+    }
 
     public String getSupplierName() {
         return supplierName;
