@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.shop.PurchasedItemStock;
 import com.tvscredit.tvscredit.models.surrogates.BaseSurrogates;
+import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -26,7 +27,7 @@ public class PurchasedItemBill {
     private PurchasedItemStock purchasedItemStock;
 
     @ManyToOne
-    private BaseSurrogates baseSurrogates;
+    private InstantLoanSurrogates instantLoanSurrogates;
 
     public Long getId() {
         return id;
@@ -36,12 +37,12 @@ public class PurchasedItemBill {
         this.id = id;
     }
 
-    public BaseSurrogates getBaseSurrogates() {
-        return baseSurrogates;
+    public InstantLoanSurrogates getInstantLoanSurrogates() {
+        return instantLoanSurrogates;
     }
 
-    public void setBaseSurrogates(BaseSurrogates baseSurrogates) {
-        this.baseSurrogates = baseSurrogates;
+    public void setInstantLoanSurrogates(InstantLoanSurrogates instantLoanSurrogates) {
+        this.instantLoanSurrogates = instantLoanSurrogates;
     }
 
     public String getSupplierName() {
