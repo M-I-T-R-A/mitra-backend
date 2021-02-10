@@ -6,6 +6,7 @@ import com.tvscredit.tvscredit.services.ShopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/shop")
@@ -59,9 +60,14 @@ public class ShopController {
         return ResponseEntity.ok();
     }
 
-    @GetMapping("/product/info")
-    public ResponseEntity<StockOfItems> getProductDetails(@RequestParam Long customerId, @RequestParam String name){
-        return ResponseEntity.ok(shopService.getStockInfoOfShop(customerId, name));
+    @GetMapping("/product/info/name")
+    public ResponseEntity<List<StockOfItems>> getProductDetailsByName(@RequestParam Long customerId, @RequestParam String name){
+        return ResponseEntity.ok(shopService.getStockInfoOfShopByProductName(customerId, name));
+    }
+
+    @GetMapping("/product/info/category")
+    public ResponseEntity<List<StockOfItems>> getProductDetailsByCategory(@RequestParam Long customerId, @RequestParam String category){
+        return ResponseEntity.ok(shopService.getStockInfoOfShopByCategory(customerId, category));
     }
 
     private Shop convertToEntity(ShopDTO dto){

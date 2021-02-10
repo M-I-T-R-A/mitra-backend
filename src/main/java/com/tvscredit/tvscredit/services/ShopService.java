@@ -11,6 +11,7 @@ import com.tvscredit.tvscredit.repository.ShopRepository;
 import com.tvscredit.tvscredit.repository.SoldItemsRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
@@ -177,15 +178,31 @@ public class ShopService {
                 .collect(Collectors.toList());
     }
 
-    public StockOfItems getStockInfoOfShop(Long customerId, String productName){
+    public List<StockOfItems> getStockInfoOfShopByProductName(Long customerId, String productName){
         Shop shop = getShopOfCustomer(customerId);
         WareHouse wareHouse = shop.getWareHouse();
 
+        List<StockOfItems> stockOfItemsList = new ArrayList<>();
+
         for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
             if(stockOfItems.getName() == productName){
-                return stockOfItems;
+                stockOfItemsList.add(stockOfItems);
             }
         }
-        return null;
+        return stockOfItemsList;
+    }
+
+    public List<StockOfItems> getStockInfoOfShopByCategory(Long customerId, String category){
+        Shop shop = getShopOfCustomer(customerId);
+        WareHouse wareHouse = shop.getWareHouse();
+
+        List<StockOfItems> stockOfItemsList = new ArrayList<>();
+
+        for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
+            if(stockOfItems.getCategory() == category){
+                stockOfItemsList.add(stockOfItems);
+            }
+        }
+        return stockOfItemsList;
     }
 }

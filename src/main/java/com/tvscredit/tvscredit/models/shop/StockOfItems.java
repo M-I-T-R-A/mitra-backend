@@ -13,7 +13,7 @@ public class StockOfItems {
 
     private String unit;
 
-    private Double quantity;
+    private Integer quantity;
 
     private String category;
 
@@ -52,11 +52,11 @@ public class StockOfItems {
         this.unit = unit;
     }
 
-    public Double getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Double quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
