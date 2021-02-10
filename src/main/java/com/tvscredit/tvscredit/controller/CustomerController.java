@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,7 +64,14 @@ public class CustomerController {
 
     @GetMapping("/check")
     public ResponseEntity<CustomerBasicDTO> checkCustomerByMobile(@RequestParam String phoneNumber){
-        return ResponseEntity.ok(convertToDto1(customerService.getCustomerFromMobileNumber(phoneNumber)));
+        Customer customer = customerService.getCustomerFromMobileNumber(phoneNumber);
+        if(customer == null){
+            return new ResponseEntity<CustomerBasicDTO>(
+                    convertToDto1(customer),
+                    HttpStatus.BAD_REQUEST);
+        }else{
+            return ResponseEntity.ok(convertToDto1(customer));
+        }
     }
 
     @PutMapping("/surrogates")

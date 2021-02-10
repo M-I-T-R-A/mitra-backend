@@ -185,7 +185,7 @@ public class ShopService {
         List<StockOfItems> stockOfItemsList = new ArrayList<>();
 
         for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
-            if(stockOfItems.getName() == productName){
+            if(stockOfItems.getName().equals(productName)){
                 stockOfItemsList.add(stockOfItems);
             }
         }
@@ -199,7 +199,7 @@ public class ShopService {
         List<StockOfItems> stockOfItemsList = new ArrayList<>();
 
         for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
-            if(stockOfItems.getCategory() == category){
+            if(stockOfItems.getCategory().equals(category)){
                 stockOfItemsList.add(stockOfItems);
             }
         }
