@@ -61,6 +61,11 @@ public class CustomerController {
         return ResponseEntity.ok(convertToDto1(customerService.getCustomer(id)));
     }
 
+    @GetMapping("/check")
+    public ResponseEntity<CustomerBasicDTO> checkCustomerByMobile(@RequestParam String phoneNumber){
+        return ResponseEntity.ok(convertToDto1(customerService.getCustomerFromMobileNumber(phoneNumber)));
+    }
+
     @PutMapping("/surrogates")
     public void updateInstantLoanSurrogates(@RequestBody CustomerInstantLoanSurrogateDTO customerInstantLoanSurrogateDTO){
         customerService.updateInstantLoanSurrogates(customerInstantLoanSurrogateDTO.getId(),
