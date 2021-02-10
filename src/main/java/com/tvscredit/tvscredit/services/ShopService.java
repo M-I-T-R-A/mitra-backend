@@ -9,6 +9,7 @@ import com.tvscredit.tvscredit.repository.PurchasedItemStockRepository;
 import com.tvscredit.tvscredit.repository.ShopCustomerRepository;
 import com.tvscredit.tvscredit.repository.ShopRepository;
 import com.tvscredit.tvscredit.repository.SoldItemsRepository;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -185,7 +186,7 @@ public class ShopService {
         List<StockOfItems> stockOfItemsList = new ArrayList<>();
 
         for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
-            if(stockOfItems.getName().equals(productName)){
+            if(FuzzySearch.ratio(productName, stockOfItems.getName()) >= 75){
                 stockOfItemsList.add(stockOfItems);
             }
         }

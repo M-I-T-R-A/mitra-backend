@@ -40,6 +40,14 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/me.xdrop/fuzzywuzzy -->
+		<dependency>
+			<groupId>me.xdrop</groupId>
+			<artifactId>fuzzywuzzy</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
