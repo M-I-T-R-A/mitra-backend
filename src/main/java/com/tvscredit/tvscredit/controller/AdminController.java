@@ -22,6 +22,11 @@ public class AdminController {
     }
 
     @GetMapping("/customer")
+    public ResponseEntity<List<CustomerBasicDTO>> getAllCustomers(){
+        return ResponseEntity.ok(adminService.getAllCustomer());
+    }
+
+    @GetMapping("/customer/waiting")
     public ResponseEntity<List<CustomerBasicDTO>> getAllPendingCustomers(){
         return ResponseEntity.ok(adminService.getAllCustomerWaitingProfiles());
     }

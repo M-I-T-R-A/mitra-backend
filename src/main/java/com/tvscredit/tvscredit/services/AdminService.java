@@ -34,6 +34,12 @@ public class AdminService {
         return customerService.getCustomer(id);
     }
 
+    public List<CustomerBasicDTO> getAllCustomer(){
+        return customerService.getAllCustomer()
+                .stream().map(customer -> modelMapper.map(customer, CustomerBasicDTO.class))
+                .collect(Collectors.toList());
+    }
+
     public List<CustomerBasicDTO> getAllCustomerWaitingProfiles(){
         List<Customer> allCustomers = customerService.getAllCustomer();
         return allCustomers.stream()
