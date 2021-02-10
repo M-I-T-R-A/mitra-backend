@@ -62,10 +62,9 @@ public class CustomerController {
     }
 
     @PutMapping("/surrogates")
-    public ResponseEntity.BodyBuilder updateInstantLoanSurrogates(@RequestBody CustomerInstantLoanSurrogateDTO customerInstantLoanSurrogateDTO){
+    public void updateInstantLoanSurrogates(@RequestBody CustomerInstantLoanSurrogateDTO customerInstantLoanSurrogateDTO){
         customerService.updateInstantLoanSurrogates(customerInstantLoanSurrogateDTO.getId(),
                 customerInstantLoanSurrogateDTO.getInstantLoanSurrogates());
-        return ResponseEntity.ok();
     }
 
     @GetMapping("/surrogates/{id}")
