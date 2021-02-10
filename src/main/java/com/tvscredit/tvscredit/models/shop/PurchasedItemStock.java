@@ -63,11 +63,11 @@ public class PurchasedItemStock {
         return stockOfItems;
     }
 
-    public void setStockOfItems(Set<StockOfItems> stockOfItems) {
+    public void setStockOfItems1(Set<StockOfItems> stockOfItems) {
         this.stockOfItems = stockOfItems;
     }
 
-    public void setStockOfItems(List<StockOfItems> stockOfItems) {
+    public void setStockOfItems1(List<StockOfItems> stockOfItems) {
         this.stockOfItems = new HashSet<>(stockOfItems);
     }
 }

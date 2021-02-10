@@ -7,8 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-
 @RestController
 @RequestMapping("/shop")
 public class ShopController {
@@ -48,7 +46,7 @@ public class ShopController {
         PurchasedItemStockDTO purchasedItemStockDTO = purchaseOrderDTO.getPurchasedItemStockDTO();
         PurchasedItemStock purchasedItemStock = convertToEntity(purchasedItemStockDTO);
         PurchasedItemBill purchasedItemBill = convertToEntity(purchaseOrderDTO.getPurchasedItemBillDTO());
-        purchasedItemStock.setStockOfItems(purchasedItemStockDTO.getStockOfItems());
+        purchasedItemStock.setStockOfItems1(purchasedItemStockDTO.getStockOfItems());
         shopService.purchaseStocks(purchasedItemStock, purchasedItemBill, purchaseOrderDTO.getCustomerId());
         return ResponseEntity.ok();
     }
@@ -56,7 +54,7 @@ public class ShopController {
     @PostMapping("/sell")
     public ResponseEntity.BodyBuilder sellStock(@RequestBody SoldItemsDTO soldItemsDTO){
         SoldItems soldItems = convertToEntity(soldItemsDTO);
-        soldItems.setSoldItems(soldItemsDTO.getSoldItems());
+        soldItems.setSoldItems1(soldItemsDTO.getSoldItems());
         shopService.soldStocksToCustomer(soldItems, soldItemsDTO.getCustomerId());
         return ResponseEntity.ok();
     }

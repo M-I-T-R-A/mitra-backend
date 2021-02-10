@@ -31,6 +31,8 @@ public class Shop {
 
     private String GSTIN;
 
+    private Double electricityAmount;
+
     private String electricityBillImageUrl;
 
     private ShopOwnership ownership;
@@ -46,6 +48,14 @@ public class Shop {
 
     public List<Documents> getShopRelatedDocs() {
         return shopRelatedDocs;
+    }
+
+    public Double getElectricityAmount() {
+        return electricityAmount;
+    }
+
+    public void setElectricityAmount(Double electricityAmount) {
+        this.electricityAmount = electricityAmount;
     }
 
     public void setShopRelatedDocs(List<Documents> shopRelatedDocs) {
