@@ -18,6 +18,16 @@ public class SoldItemsDTO {
 
     private List<SoldItemsDetail> soldItems;
 
+    private String invoiceImageUrl;
+
+    public String getInvoiceImageUrl() {
+        return invoiceImageUrl;
+    }
+
+    public void setInvoiceImageUrl(String invoiceImageUrl) {
+        this.invoiceImageUrl = invoiceImageUrl;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

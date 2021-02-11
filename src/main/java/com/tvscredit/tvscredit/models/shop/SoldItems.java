@@ -26,6 +26,16 @@ public class SoldItems {
     @ElementCollection
     private Set<SoldItemsDetail> soldItems;
 
+    private String invoiceImageUrl;
+
+    public String getInvoiceImageUrl() {
+        return invoiceImageUrl;
+    }
+
+    public void setInvoiceImageUrl(String invoiceImageUrl) {
+        this.invoiceImageUrl = invoiceImageUrl;
+    }
+
     public Long getId() {
         return id;
     }
