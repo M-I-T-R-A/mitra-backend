@@ -133,14 +133,16 @@ public class ShopService {
 
         soldItems.setShop(getShopOfCustomer(customerId));
 
-        Double credit = 0.0;
+        Double credit = 0.0, total = 0.0;
 
-        for(SoldItemsDetail itemsDetail:soldItems.getSoldItems()){
+        for(StockOfItems itemsDetail:soldItems.getSoldItems()){
             updateStocksInWareHouse((StockOfItems) itemsDetail,
                     soldItems.getShop().getOwner().getId(),
                     2);
-            credit = credit + itemsDetail.getTotalValue() - itemsDetail.getAmountPaid();
+            total = total + itemsDetail.getTotalValue();
         }
+
+        credit = total - soldItems.getAmountPaid();
 
         ShopCustomer shopCustomer = shopCustomerRepository.findByPhoneNumber(
                 soldItems.getShopCustomer().getPhoneNumber());
@@ -205,4 +207,5 @@ public class ShopService {
         }
         return stockOfItemsList;
     }
+
 }

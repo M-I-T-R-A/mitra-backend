@@ -1,7 +1,7 @@
 package com.tvscredit.tvscredit.dto.shop;
 
 import com.tvscredit.tvscredit.models.person.ShopCustomer;
-import com.tvscredit.tvscredit.models.shop.SoldItemsDetail;
+import com.tvscredit.tvscredit.models.shop.StockOfItems;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class SoldItemsDTO {
 
     private ShopCustomer shopCustomer;
 
-    private List<SoldItemsDetail> soldItems;
+    private List<StockOfItems> soldItems;
 
     private String invoiceImageUrl;
 
@@ -52,11 +52,11 @@ public class SoldItemsDTO {
         this.shopCustomer = shopCustomer;
     }
 
-    public List<SoldItemsDetail> getSoldItems() {
+    public List<StockOfItems> getSoldItems() {
         return soldItems;
     }
 
-    public void setSoldItems(List<SoldItemsDetail> soldItems) {
+    public void setSoldItems(List<StockOfItems> soldItems) {
         this.soldItems = soldItems;
     }
 }

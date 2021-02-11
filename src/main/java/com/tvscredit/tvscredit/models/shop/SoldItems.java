@@ -24,9 +24,27 @@ public class SoldItems {
     private ShopCustomer shopCustomer;
 
     @ElementCollection
-    private Set<SoldItemsDetail> soldItems;
+    private Set<StockOfItems> soldItems;
+
+    private Double amountPaid;;
 
     private String invoiceImageUrl;
+
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public Set<StockOfItems> getSoldItems() {
+        return soldItems;
+    }
+
+    public void setSoldItems(Set<StockOfItems> soldItems) {
+        this.soldItems = soldItems;
+    }
 
     public String getInvoiceImageUrl() {
         return invoiceImageUrl;
@@ -68,15 +86,7 @@ public class SoldItems {
         this.shopCustomer = shopCustomer;
     }
 
-    public Set<SoldItemsDetail> getSoldItems() {
-        return soldItems;
-    }
-
-    public void setSoldItems(Set<SoldItemsDetail> soldItems) {
-        this.soldItems = soldItems;
-    }
-
-    public void setSoldItemsUsingList(List<SoldItemsDetail> soldItems) {
+    public void setSoldItemsUsingList(List<StockOfItems> soldItems) {
         this.soldItems = new HashSet<>(soldItems);
     }
 }

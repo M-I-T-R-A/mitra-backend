@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.controller;
 
+import com.tvscredit.tvscredit.dto.shop.SoldItemsDTO2;
 import com.tvscredit.tvscredit.dto.shop.*;
 import com.tvscredit.tvscredit.models.shop.*;
 import com.tvscredit.tvscredit.services.ShopService;
@@ -7,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/shop")
@@ -70,6 +72,15 @@ public class ShopController {
         return ResponseEntity.ok(shopService.getStockInfoOfShopByCategory(customerId, category));
     }
 
+    @GetMapping("/sell/customers/{id}")
+    public ResponseEntity<List<SoldItemsDTO2>> getAllCustomers(@PathVariable Long id){
+        return ResponseEntity.ok(
+                shopService.getAllSoldItems(id).stream()
+                .map(soldItems -> convertToDto2(soldItems))
+                .collect(Collectors.toList())
+        );
+    }
+
     private Shop convertToEntity(ShopDTO dto){
         return modelMapper.map(dto, Shop.class);
     }
@@ -88,5 +99,9 @@ public class ShopController {
 
     private ShopDTO convertToDto1(Shop entity){
         return modelMapper.map(entity, ShopDTO.class);
+    }
+
+    private SoldItemsDTO2 convertToDto2(SoldItems entity){
+        return modelMapper.map(entity, SoldItemsDTO2.class);
     }
 }
