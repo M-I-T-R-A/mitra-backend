@@ -26,7 +26,7 @@ public class SoldItems {
     @ElementCollection
     private Set<StockOfItems> soldItems;
 
-    private Double amountPaid;;
+    private Double amountPaid;
 
     private String invoiceImageUrl;
 
