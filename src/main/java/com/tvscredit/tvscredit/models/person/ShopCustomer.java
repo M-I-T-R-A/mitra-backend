@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tvscredit.tvscredit.models.shop.Shop;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class ShopCustomer {
 
     private Boolean isCreditAmountVerified;
 
+    @JsonIgnore
     @ManyToOne
     private Shop shop;
 
