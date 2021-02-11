@@ -47,7 +47,7 @@ public class ShopController {
         PurchasedItemStockDTO purchasedItemStockDTO = purchaseOrderDTO.getPurchasedItemStockDTO();
         PurchasedItemStock purchasedItemStock = convertToEntity(purchasedItemStockDTO);
         PurchasedItemBill purchasedItemBill = convertToEntity(purchaseOrderDTO.getPurchasedItemBillDTO());
-        purchasedItemStock.setStockOfItems1(purchasedItemStockDTO.getStockOfItems());
+        purchasedItemStock.setStockOfItemsUsingList(purchasedItemStockDTO.getStockOfItems());
         shopService.purchaseStocks(purchasedItemStock, purchasedItemBill, purchaseOrderDTO.getCustomerId());
         return ResponseEntity.ok();
     }
@@ -55,7 +55,7 @@ public class ShopController {
     @PostMapping("/sell")
     public ResponseEntity.BodyBuilder sellStock(@RequestBody SoldItemsDTO soldItemsDTO){
         SoldItems soldItems = convertToEntity(soldItemsDTO);
-        soldItems.setSoldItems1(soldItemsDTO.getSoldItems());
+        soldItems.setSoldItemsUsingList(soldItemsDTO.getSoldItems());
         shopService.soldStocksToCustomer(soldItems, soldItemsDTO.getCustomerId());
         return ResponseEntity.ok();
     }

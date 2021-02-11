@@ -49,8 +49,4 @@ public class SoldItemsDTO {
     public void setSoldItems(List<SoldItemsDetail> soldItems) {
         this.soldItems = soldItems;
     }
-
-    public void setSoldItems(Set<SoldItemsDetail> soldItems) {
-        this.soldItems = new ArrayList<>(soldItems);
-    }
 }

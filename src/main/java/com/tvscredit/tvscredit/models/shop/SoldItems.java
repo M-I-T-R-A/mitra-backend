@@ -62,11 +62,11 @@ public class SoldItems {
         return soldItems;
     }
 
-    public void setSoldItems1(Set<SoldItemsDetail> soldItems) {
+    public void setSoldItems(Set<SoldItemsDetail> soldItems) {
         this.soldItems = soldItems;
     }
 
-    public void setSoldItems1(List<SoldItemsDetail> soldItems) {
+    public void setSoldItemsUsingList(List<SoldItemsDetail> soldItems) {
         this.soldItems = new HashSet<>(soldItems);
     }
 }
