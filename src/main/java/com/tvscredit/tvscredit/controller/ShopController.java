@@ -37,7 +37,7 @@ public class ShopController {
     }
 
     @PutMapping("/warehouse/item/{id}")
-    public ResponseEntity.BodyBuilder updateWareHouseInventoryOfShop(@PathVariable Long id, @RequestBody List<StockOfItems> stockOfItems){
+    public ResponseEntity.BodyBuilder updateWareHouseInventoryOfShop(@PathVariable Long id, @RequestBody StockOfItems stockOfItems){
         shopService.updateInventory(stockOfItems, id);
         return ResponseEntity.ok();
     }

@@ -64,19 +64,16 @@ public class ShopService {
         return shopRepository.findByOwner(customerService.getCustomer(customerId));
     }
 
-    public void updateInventory(List<StockOfItems> stockOfItemsList, Long customerId){
+    public void updateInventory(StockOfItems stockOfItems, Long customerId){
         Shop shop = getShopOfCustomer(customerId);
         WareHouse wareHouse = shop.getWareHouse();
         Set<StockOfItems> itemsSet = wareHouse.getItemsSet();
 
-
-        for(StockOfItems stockOfItems:stockOfItemsList){
-            StockOfItems wareHouseItem = wareHouse.isItemPresent(stockOfItems);
-            if(wareHouseItem != null){
-                itemsSet.remove(wareHouseItem);
-            }
-            itemsSet.add(stockOfItems);
+        StockOfItems wareHouseItem = wareHouse.isItemPresent(stockOfItems);
+        if(wareHouseItem != null){
+            itemsSet.remove(wareHouseItem);
         }
+        itemsSet.add(stockOfItems);
 
         wareHouse.setItemsSet(itemsSet);
         shop.setWareHouse(wareHouse);
