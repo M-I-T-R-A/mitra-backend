@@ -46,8 +46,8 @@ public class AdminService {
     public List<CustomerLoanDTO> getAllCustomerWaitingProfiles(){
         List<Customer> allCustomers = customerService.getAllCustomer();
         return allCustomers.stream()
-                .filter(customer -> customer.getHaveCurrentLoan() == false &&
-                        customerService.getInstantLoan(customer.getId()).getApproval() == Approval.WAITING)
+                .filter(customer -> (customer.getHaveCurrentLoan() == null || customer.getHaveCurrentLoan() == false) &&
+                        (customerService.getInstantLoan(customer.getId()) != null && customerService.getInstantLoan(customer.getId()).getApproval() == Approval.WAITING))
                 .map(customer -> {
                     CustomerLoanDTO customerLoanDTO = modelMapper.map(customer, CustomerLoanDTO.class);
                     customerLoanDTO.setInstantLoanDTO(

@@ -44,6 +44,7 @@ public class CustomerService {
     }
 
     public Customer saveCustomer(Customer customer){
+        customer.setHaveCurrentLoan(false);
         return customerRepository.save(customer);
     }
 
@@ -106,6 +107,9 @@ public class CustomerService {
     public InstantLoan getInstantLoan(Long customerId){
         customer = getCustomer(customerId);
         int lastIndex = customer.getAllLoans().size() - 1;
+        if(lastIndex == -1){
+            return null;
+        }
         return customer.getAllLoans().get(lastIndex);
     }
 
