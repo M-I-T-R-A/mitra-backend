@@ -14,8 +14,7 @@ public class WareHouse {
 
     @ElementCollection
     private List<Double> areaOfWareHouses;
-
-    @JsonIgnore
+    
     @ElementCollection
     private Set<StockOfItems> itemsSet;
 

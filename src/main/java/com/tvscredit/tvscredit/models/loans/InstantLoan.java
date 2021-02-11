@@ -1,6 +1,8 @@
 package com.tvscredit.tvscredit.models.loans;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tvscredit.tvscredit.models.enums.Approval;
 import com.tvscredit.tvscredit.models.person.Customer;
 import org.hibernate.annotations.ColumnDefault;
@@ -14,6 +16,7 @@ public class InstantLoan {
     @GeneratedValue
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     private Customer customer;
 

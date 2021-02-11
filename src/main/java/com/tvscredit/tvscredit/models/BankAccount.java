@@ -1,5 +1,8 @@
 package com.tvscredit.tvscredit.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.person.Person;
 
@@ -15,6 +18,7 @@ public class BankAccount {
 
     private Long ifsc;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     private Customer person;
 

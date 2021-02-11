@@ -1,5 +1,7 @@
 package com.tvscredit.tvscredit.models.person;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tvscredit.tvscredit.models.BankAccount;
 import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
@@ -16,12 +18,15 @@ public class Customer extends Person{
 
     private Integer status;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "customer")
     private List<InstantLoan> allLoans;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "customer")
     private InstantLoanSurrogates instantLoanSurrogates;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<BankAccount> allBankAccounts;
 

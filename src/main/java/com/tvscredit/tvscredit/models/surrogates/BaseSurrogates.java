@@ -1,6 +1,8 @@
 package com.tvscredit.tvscredit.models.surrogates;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tvscredit.tvscredit.models.enums.Competition;
 import com.tvscredit.tvscredit.models.enums.LocationCategory;
 import com.tvscredit.tvscredit.models.person.Customer;
@@ -34,6 +36,7 @@ public class BaseSurrogates {
     @ElementCollection
     private List<IncomeTaxReturn> taxReturns;
 
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL)
     private List<PurchasedItemBill> bills;
 

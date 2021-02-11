@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -15,12 +16,13 @@ public class PurchasedItemStock {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "purchasedItemStock")
     private PurchasedItemBill purchasedItemBill;
 
     private Date dateOfPurchase;
 
+    @JsonIgnore
     @ManyToOne
     private Shop shop;
 

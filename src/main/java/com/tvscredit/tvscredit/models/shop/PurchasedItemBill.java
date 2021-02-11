@@ -1,6 +1,8 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.shop.PurchasedItemStock;
 import com.tvscredit.tvscredit.models.surrogates.BaseSurrogates;
@@ -23,10 +25,11 @@ public class PurchasedItemBill {
     @Column(columnDefinition="TEXT")
     private String imageUrl;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "purchasedItemBill", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToOne
     private PurchasedItemStock purchasedItemStock;
 
+    @JsonBackReference
     @ManyToOne
     private InstantLoanSurrogates instantLoanSurrogates;
 

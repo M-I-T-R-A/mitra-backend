@@ -1,5 +1,8 @@
 package com.tvscredit.tvscredit.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tvscredit.tvscredit.models.Address;
 import com.tvscredit.tvscredit.models.Documents;
 import com.tvscredit.tvscredit.models.enums.ShopCategory;
@@ -44,6 +47,7 @@ public class Shop {
     @Embedded
     private WareHouse wareHouse;
 
+    @JsonIgnore
     @OneToOne
     private Customer owner;
 
