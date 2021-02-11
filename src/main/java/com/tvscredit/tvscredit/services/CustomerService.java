@@ -93,6 +93,7 @@ public class CustomerService {
     public InstantLoan applyForInstantLoan(InstantLoan instantLoan, Long customerId){
         customer = getCustomer(customerId);
         instantLoan.setCustomer(customer);
+        instantLoan.setApproval(Approval.WAITING);
         InstantLoan createdInstantLoan = instantLoanRepository.save(instantLoan);
 
         List<InstantLoan> allLoans = customer.getAllLoans();

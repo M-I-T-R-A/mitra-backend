@@ -37,27 +37,27 @@ public class ShopController {
     }
 
     @PutMapping("/warehouse/item/{id}")
-    public ResponseEntity.BodyBuilder updateWareHouseInventoryOfShop(@PathVariable Long id, @RequestBody StockOfItems stockOfItems){
+    public ResponseEntity updateWareHouseInventoryOfShop(@PathVariable Long id, @RequestBody StockOfItems stockOfItems){
         shopService.updateInventory(stockOfItems, id);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/purchase")
-    public ResponseEntity.BodyBuilder purchaseStock(@RequestBody PurchaseOrderDTO purchaseOrderDTO){
+    public ResponseEntity purchaseStock(@RequestBody PurchaseOrderDTO purchaseOrderDTO){
         PurchasedItemStockDTO purchasedItemStockDTO = purchaseOrderDTO.getPurchasedItemStockDTO();
         PurchasedItemStock purchasedItemStock = convertToEntity(purchasedItemStockDTO);
         PurchasedItemBill purchasedItemBill = convertToEntity(purchaseOrderDTO.getPurchasedItemBillDTO());
         purchasedItemStock.setStockOfItemsUsingList(purchasedItemStockDTO.getStockOfItems());
         shopService.purchaseStocks(purchasedItemStock, purchasedItemBill, purchaseOrderDTO.getCustomerId());
-        return ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/sell")
-    public ResponseEntity.BodyBuilder sellStock(@RequestBody SoldItemsDTO soldItemsDTO){
+    public ResponseEntity sellStock(@RequestBody SoldItemsDTO soldItemsDTO){
         SoldItems soldItems = convertToEntity(soldItemsDTO);
         soldItems.setSoldItemsUsingList(soldItemsDTO.getSoldItems());
         shopService.soldStocksToCustomer(soldItems, soldItemsDTO.getCustomerId());
-        return ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/product/info/name")

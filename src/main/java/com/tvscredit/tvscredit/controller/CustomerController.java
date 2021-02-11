@@ -4,8 +4,10 @@ import com.tvscredit.tvscredit.config.BeanNotNullCopy;
 import com.tvscredit.tvscredit.dto.bankaccount.BankAccountDTO;
 import com.tvscredit.tvscredit.dto.customer.CustomerBasicDTO;
 import com.tvscredit.tvscredit.dto.customer.CustomerInstantLoanSurrogateDTO;
+import com.tvscredit.tvscredit.dto.loan.ApprovedInstantLoanDTO;
 import com.tvscredit.tvscredit.dto.loan.InstantLoanDTO;
 import com.tvscredit.tvscredit.models.BankAccount;
+import com.tvscredit.tvscredit.models.enums.Approval;
 import com.tvscredit.tvscredit.models.loans.InstantLoan;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.services.CustomerService;
@@ -109,7 +111,13 @@ public class CustomerController {
 
     @GetMapping("/loan/instant/current/{id}")
     public ResponseEntity<InstantLoanDTO> getCurrentLoan(@PathVariable Long id){
-        return ResponseEntity.ok(convertToDto4(customerService.getInstantLoan(id)));
+        InstantLoan instantLoan = customerService.getInstantLoan(id);
+
+        if(instantLoan.getApproval().equals(Approval.APPROVED)){
+            return ResponseEntity.ok(convertToDto5(instantLoan));
+        }else{
+            return ResponseEntity.ok(convertToDto4(instantLoan));
+        }
     }
 
     @GetMapping("/loan/instant/{id}")
@@ -153,5 +161,7 @@ public class CustomerController {
     private InstantLoanDTO convertToDto4(InstantLoan entity){
         return modelMapper.map(entity, InstantLoanDTO.class);
     }
-
+    private ApprovedInstantLoanDTO convertToDto5(InstantLoan entity){
+        return modelMapper.map(entity, ApprovedInstantLoanDTO.class);
+    }
 }

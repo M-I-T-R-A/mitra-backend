@@ -1,6 +1,8 @@
 package com.tvscredit.tvscredit.services;
 
 import com.tvscredit.tvscredit.dto.customer.CustomerBasicDTO;
+import com.tvscredit.tvscredit.dto.customer.CustomerLoanDTO;
+import com.tvscredit.tvscredit.dto.loan.InstantLoanDTO;
 import com.tvscredit.tvscredit.models.enums.Approval;
 import com.tvscredit.tvscredit.models.loans.ApprovedInstantLoan;
 import com.tvscredit.tvscredit.models.loans.InstantLoan;
@@ -8,6 +10,7 @@ import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.repository.ApprovedInstantLoanRepository;
 import com.tvscredit.tvscredit.repository.InstantLoanRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,12 +43,18 @@ public class AdminService {
                 .collect(Collectors.toList());
     }
 
-    public List<CustomerBasicDTO> getAllCustomerWaitingProfiles(){
+    public List<CustomerLoanDTO> getAllCustomerWaitingProfiles(){
         List<Customer> allCustomers = customerService.getAllCustomer();
         return allCustomers.stream()
                 .filter(customer -> customer.getHaveCurrentLoan() == false &&
                         customerService.getInstantLoan(customer.getId()).getApproval() == Approval.WAITING)
-                .map(customer -> modelMapper.map(customer, CustomerBasicDTO.class))
+                .map(customer -> {
+                    CustomerLoanDTO customerLoanDTO = modelMapper.map(customer, CustomerLoanDTO.class);
+                    customerLoanDTO.setInstantLoanDTO(
+                            modelMapper.map(customerService.getInstantLoan(customer.getId()), InstantLoanDTO.class)
+                    );
+                    return customerLoanDTO;
+                })
                 .collect(Collectors.toList());
     }
 

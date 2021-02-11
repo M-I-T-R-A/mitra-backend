@@ -1,6 +1,7 @@
 package com.tvscredit.tvscredit.controller;
 
 import com.tvscredit.tvscredit.dto.customer.CustomerBasicDTO;
+import com.tvscredit.tvscredit.dto.customer.CustomerLoanDTO;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.services.AdminService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class AdminController {
     }
 
     @GetMapping("/customer/waiting")
-    public ResponseEntity<List<CustomerBasicDTO>> getAllPendingCustomers(){
+    public ResponseEntity<List<CustomerLoanDTO>> getAllPendingCustomers(){
         return ResponseEntity.ok(adminService.getAllCustomerWaitingProfiles());
     }
 
