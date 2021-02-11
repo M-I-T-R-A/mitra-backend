@@ -32,12 +32,16 @@ public class Person {
 
     private Address residenceAddress;
 
+    @Column(columnDefinition="TEXT")
     private String aadharCardFrontImageUrl;
 
+    @Column(columnDefinition="TEXT")
     private String aadharCardBackImageUrl;
 
+    @Column(columnDefinition="TEXT")
     private String panCardImageUrl;
 
+    @Column(columnDefinition="TEXT")
     private String electricityBillImageUrl;
 
     private Integer cibilScore;

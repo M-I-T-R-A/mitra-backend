@@ -33,6 +33,7 @@ public class Shop {
 
     private Double electricityAmount;
 
+    @Column(columnDefinition="TEXT")
     private String electricityBillImageUrl;
 
     private ShopOwnership ownership;

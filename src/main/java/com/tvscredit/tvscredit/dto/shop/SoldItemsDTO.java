@@ -3,6 +3,7 @@ package com.tvscredit.tvscredit.dto.shop;
 import com.tvscredit.tvscredit.models.person.ShopCustomer;
 import com.tvscredit.tvscredit.models.shop.StockOfItems;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

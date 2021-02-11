@@ -20,6 +20,7 @@ public class BankAccount {
 
     private String accountNumber;
 
+    @Column(columnDefinition="TEXT")
     @ElementCollection
     private List<String> bankStatementImageUrls;
 

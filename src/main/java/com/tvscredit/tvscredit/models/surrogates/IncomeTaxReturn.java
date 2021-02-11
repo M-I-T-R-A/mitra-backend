@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models.surrogates;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.sql.Date;
 
@@ -7,6 +8,8 @@ import java.sql.Date;
 public class IncomeTaxReturn {
     private Date date;
     private Double tax;
+
+    @Column(columnDefinition="TEXT")
     private String itrDocumentUrl;
 
     public Date getDate() {

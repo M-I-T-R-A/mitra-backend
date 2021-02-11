@@ -1,5 +1,6 @@
 package com.tvscredit.tvscredit.models;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -7,6 +8,7 @@ public class Documents {
 
     private String name;
 
+    @Column(columnDefinition="TEXT")
     private String url;
 
     public String getName() {

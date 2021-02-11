@@ -20,6 +20,7 @@ public class PurchasedItemBill {
 
     private String supplierMobile;
 
+    @Column(columnDefinition="TEXT")
     private String imageUrl;
 
     @JsonIgnore

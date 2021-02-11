@@ -28,6 +28,7 @@ public class SoldItems {
 
     private Double amountPaid;
 
+    @Column(columnDefinition="TEXT")
     private String invoiceImageUrl;
 
     public Double getAmountPaid() {
