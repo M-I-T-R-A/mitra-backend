@@ -24,7 +24,7 @@ public class PurchasedItemBill {
     private String imageUrl;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "purchasedItemBill")
+    @OneToOne
     private PurchasedItemStock purchasedItemStock;
 
     @ManyToOne

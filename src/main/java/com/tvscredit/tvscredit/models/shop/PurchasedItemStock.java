@@ -16,7 +16,7 @@ public class PurchasedItemStock {
     private Long id;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "purchasedItemStock")
     private PurchasedItemBill purchasedItemBill;
 
     private Date dateOfPurchase;
