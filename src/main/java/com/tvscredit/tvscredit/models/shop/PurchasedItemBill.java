@@ -24,7 +24,7 @@ public class PurchasedItemBill {
     private String imageUrl;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(mappedBy = "purchasedItemBill", cascade = CascadeType.ALL)
     private PurchasedItemStock purchasedItemStock;
 
     @ManyToOne
