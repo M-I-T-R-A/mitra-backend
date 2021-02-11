@@ -139,6 +139,8 @@ public class ShopService {
             updateStocksInWareHouse((StockOfItems) itemsDetail,
                     soldItems.getShop().getOwner().getId(),
                     2);
+            Double currentTotal = itemsDetail.getPricePerUnit() * itemsDetail.getQuantity();
+            itemsDetail.setTotalValue(currentTotal);
             total = total + itemsDetail.getTotalValue();
         }
 
