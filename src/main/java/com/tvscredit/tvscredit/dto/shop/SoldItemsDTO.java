@@ -20,6 +20,16 @@ public class SoldItemsDTO {
 
     private String invoiceImageUrl;
 
+    private Double amountPaid;
+
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
     public String getInvoiceImageUrl() {
         return invoiceImageUrl;
     }
