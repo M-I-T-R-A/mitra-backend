@@ -204,7 +204,7 @@ public class ShopService {
         List<StockOfItems> stockOfItemsList = new ArrayList<>();
 
         for(StockOfItems stockOfItems:wareHouse.getItemsSet()){
-            if(stockOfItems.getCategory().equals(category)){
+            if(stockOfItems.getCategory()!=null && stockOfItems.getCategory().equals(category)){
                 stockOfItemsList.add(stockOfItems);
             }
         }
