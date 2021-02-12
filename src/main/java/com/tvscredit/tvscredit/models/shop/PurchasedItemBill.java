@@ -26,7 +26,7 @@ public class PurchasedItemBill {
     private String imageUrl;
 
     @JsonManagedReference
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private PurchasedItemStock purchasedItemStock;
 
     @JsonBackReference
