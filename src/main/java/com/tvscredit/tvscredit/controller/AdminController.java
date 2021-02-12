@@ -3,6 +3,7 @@ package com.tvscredit.tvscredit.controller;
 import com.tvscredit.tvscredit.dto.customer.CustomerBasicDTO;
 import com.tvscredit.tvscredit.dto.customer.CustomerDetailDTO;
 import com.tvscredit.tvscredit.dto.customer.CustomerLoanDTO;
+import com.tvscredit.tvscredit.models.loans.ApprovedInstantLoan;
 import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.services.AdminService;
 import com.tvscredit.tvscredit.services.ShopService;
@@ -46,5 +47,18 @@ public class AdminController {
         customerDetailDTO.setShop(shopService.getShopOfCustomer(id));
 
         return ResponseEntity.ok(customerDetailDTO);
+    }
+
+    @GetMapping("/customer/reject/{id}")
+    public ResponseEntity rejectLoan(@PathVariable Long id){
+        adminService.rejectLoan(id);
+        System.out.println("reject"+id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/customer/approve/{id}")
+    public ResponseEntity approveLoan(@PathVariable Long id, @RequestBody ApprovedInstantLoan approvedInstantLoan){
+        adminService.approveLoan(approvedInstantLoan, id);
+        return  ResponseEntity.ok().build();
     }
 }
