@@ -24,19 +24,22 @@ public class ShopService {
     private ShopCustomerRepository shopCustomerRepository;
     private BeanNotNullCopy beanNotNullCopy;
     private PurchasedItemBillRepository purchasedItemBillRepository;
+    private PurchasedItemStockRepository purchasedItemStockRepository;
 
     public ShopService(CustomerService customerService,
                        ShopCustomerRepository shopCustomerRepository,
                        SoldItemsRepository soldItemsRepository,
                        BeanNotNullCopy beanNotNullCopy,
                        PurchasedItemBillRepository purchasedItemBillRepository,
-                       ShopRepository shopRepository) {
+                       ShopRepository shopRepository,
+                       PurchasedItemStockRepository purchasedItemStockRepository) {
         this.customerService = customerService;
         this.soldItemsRepository = soldItemsRepository;
         this.shopRepository = shopRepository;
         this.beanNotNullCopy = beanNotNullCopy;
         this.shopCustomerRepository = shopCustomerRepository;
         this.purchasedItemBillRepository = purchasedItemBillRepository;
+        this.purchasedItemStockRepository = purchasedItemStockRepository;
     }
 
     public Shop addShop(Shop shop, Long customerId){
