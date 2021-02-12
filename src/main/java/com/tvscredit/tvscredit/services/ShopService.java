@@ -5,10 +5,7 @@ import com.tvscredit.tvscredit.models.person.Customer;
 import com.tvscredit.tvscredit.models.person.ShopCustomer;
 import com.tvscredit.tvscredit.models.shop.*;
 import com.tvscredit.tvscredit.models.surrogates.InstantLoanSurrogates;
-import com.tvscredit.tvscredit.repository.PurchasedItemStockRepository;
-import com.tvscredit.tvscredit.repository.ShopCustomerRepository;
-import com.tvscredit.tvscredit.repository.ShopRepository;
-import com.tvscredit.tvscredit.repository.SoldItemsRepository;
+import com.tvscredit.tvscredit.repository.*;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import org.springframework.stereotype.Service;
 
@@ -26,20 +23,20 @@ public class ShopService {
     private SoldItemsRepository soldItemsRepository;
     private ShopCustomerRepository shopCustomerRepository;
     private BeanNotNullCopy beanNotNullCopy;
-    private PurchasedItemStockRepository purchasedItemStockRepository;
+    private PurchasedItemBillRepository purchasedItemBillRepository;
 
     public ShopService(CustomerService customerService,
                        ShopCustomerRepository shopCustomerRepository,
                        SoldItemsRepository soldItemsRepository,
                        BeanNotNullCopy beanNotNullCopy,
-                       PurchasedItemStockRepository purchasedItemStockRepository,
+                       PurchasedItemBillRepository purchasedItemBillRepository,
                        ShopRepository shopRepository) {
         this.customerService = customerService;
         this.soldItemsRepository = soldItemsRepository;
         this.shopRepository = shopRepository;
         this.beanNotNullCopy = beanNotNullCopy;
         this.shopCustomerRepository = shopCustomerRepository;
-        this.purchasedItemStockRepository = purchasedItemStockRepository;
+        this.purchasedItemBillRepository = purchasedItemBillRepository;
     }
 
     public Shop addShop(Shop shop, Long customerId){
@@ -126,7 +123,7 @@ public class ShopService {
         for(StockOfItems items:purchasedItemStock.getStockOfItems()){
             updateStocksInWareHouse(items, customerId, 1);
         }
-        purchasedItemStockRepository.save(purchasedItemStock);
+        purchasedItemBillRepository.save(purchasedItemBill);
     }
 
     public void soldStocksToCustomer(SoldItems soldItems, Long customerId){

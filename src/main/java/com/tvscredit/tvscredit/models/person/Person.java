@@ -80,7 +80,7 @@ public class Person {
         this.name = name;
     }
 
-    public Enum<Gender> getGender() {
+    public Gender getGender() {
         return gender;
     }
 
