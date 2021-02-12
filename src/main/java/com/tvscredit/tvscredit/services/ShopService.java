@@ -116,7 +116,6 @@ public class ShopService {
 
         purchasedItemStock.setShop(shop);
         purchasedItemBill.setPurchasedItemStock(purchasedItemStock);
-        purchasedItemStock.setPurchasedItemBill(purchasedItemBill);
 
         InstantLoanSurrogates instantLoanSurrogates = customerService.getInstantLoanSurrogates(customerId);
         List<PurchasedItemBill> billList = instantLoanSurrogates.getBills();
