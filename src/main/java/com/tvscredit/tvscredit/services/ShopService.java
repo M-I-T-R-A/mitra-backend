@@ -114,6 +114,7 @@ public class ShopService {
     public void purchaseStocks(PurchasedItemStock purchasedItemStock, PurchasedItemBill purchasedItemBill, Long customerId){
         Shop shop = getShopOfCustomer(customerId);
 
+        purchasedItemStock.setShop(shop);
         purchasedItemBill.setPurchasedItemStock(purchasedItemStock);
         purchasedItemStock.setPurchasedItemBill(purchasedItemBill);
 
