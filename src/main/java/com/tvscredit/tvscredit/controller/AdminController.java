@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -59,6 +59,8 @@ public class AdminController {
     @PostMapping("/customer/approve/{id}")
     public ResponseEntity approveLoan(@PathVariable Long id, @RequestBody ApprovedInstantLoan approvedInstantLoan){
         adminService.approveLoan(approvedInstantLoan, id);
+        System.out.println(approvedInstantLoan.getApprovedAmount());
+        System.out.println(id);
         return  ResponseEntity.ok().build();
     }
 }

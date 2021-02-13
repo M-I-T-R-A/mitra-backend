@@ -23,7 +23,8 @@ public class InstantLoan {
     private Double demandedAmount;
 
     private Approval approval = Approval.WAITING;
-    
+
+    @JsonManagedReference
     @OneToOne(mappedBy = "instantLoan")
     private ApprovedInstantLoan approvedInstantLoan;
 

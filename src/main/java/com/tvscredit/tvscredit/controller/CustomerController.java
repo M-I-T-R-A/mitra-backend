@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -111,14 +111,10 @@ public class CustomerController {
     }
 
     @GetMapping("/loan/instant/current/{id}")
-    public ResponseEntity<InstantLoanDTO> getCurrentLoan(@PathVariable Long id){
+    public ResponseEntity<ApprovedInstantLoanDTO> getCurrentLoan(@PathVariable Long id){
         InstantLoan instantLoan = customerService.getInstantLoan(id);
+        return ResponseEntity.ok(convertToDto5(instantLoan));
 
-        if(instantLoan!=null && instantLoan.getApproval().equals(Approval.APPROVED)){
-            return ResponseEntity.ok(convertToDto5(instantLoan));
-        }else{
-            return ResponseEntity.ok(convertToDto4(instantLoan));
-        }
     }
 
     @GetMapping("/loan/instant/{id}")

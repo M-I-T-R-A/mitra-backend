@@ -95,6 +95,7 @@ public class CustomerService {
         customer = getCustomer(customerId);
         instantLoan.setCustomer(customer);
         instantLoan.setApproval(Approval.WAITING);
+        instantLoan.setApprovedInstantLoan(null);
         InstantLoan createdInstantLoan = instantLoanRepository.save(instantLoan);
 
         List<InstantLoan> allLoans = customer.getAllLoans();
@@ -106,11 +107,19 @@ public class CustomerService {
 
     public InstantLoan getInstantLoan(Long customerId){
         customer = getCustomer(customerId);
-        int lastIndex = customer.getAllLoans().size() - 1;
-        if(lastIndex == -1){
+        List<InstantLoan> allLoans = customer.getAllLoans();
+        int maxId = 0;
+        if(allLoans.size() == 0){
             return null;
         }
-        return customer.getAllLoans().get(lastIndex);
+        InstantLoan instantLoan = allLoans.get(0);
+        for(InstantLoan instantLoan1:allLoans){
+            if(instantLoan1.getId()>maxId){
+                maxId = Math.toIntExact(instantLoan1.getId());
+                instantLoan = instantLoan1;
+            }
+        }
+        return instantLoan;
     }
 
     public List<InstantLoan> getAllInstantLoans(Long customerId){
