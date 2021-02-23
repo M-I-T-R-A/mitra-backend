@@ -54,8 +54,9 @@ public class WareHouse {
     }
 
     public StockOfItems isItemPresent(StockOfItems stockOfItems){
+
         for (StockOfItems item:itemsSet){
-            if(stockOfItems.getName() == item.getName()){
+            if(stockOfItems.getName().equals(item.getName())){
                 return item;
             }
         }
